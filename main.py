@@ -2,7 +2,7 @@
 # Import Colorama
 from colorama import Fore, Back, Style
 # Importing modules from ./lib
-from lib import addUser, changeKeyboardLayout, networking, updatePostgresql, changeRootPasswd, upgrade, installTools, cleanup
+from lib import addUser, updatePostgresql, upgrade, installTools, cleanup, networking, changeKeyboardLayout
 # --------------
 # Imports module 'webdriver' from 'selenium'
 # Trying to automate some key send actions in Firefox
@@ -20,48 +20,26 @@ from lib import addUser, changeKeyboardLayout, networking, updatePostgresql, cha
 #print(Style.RESET_ALL)
 addUser.addUser()
 
-# Changing Keyboard Layout
-# print(Fore.WHITE + "Changing Keyboard Layout :)")
-# import changeKeyboardLayout
-changeKeyboardLayout.changeKeyboardLayout()
-
-# Network configuration
-#print(Fore.WHITE + "Configuring local Network settings")
-networking.networkConfig()
-
 # Update PostgreSQL config :)
 #print(Fore.WHITE + "Updating PostgreSQL ports :)")
-#updatePostgresql.updatePostgres()
-    
-# Change Root Pwd
-#print(Fore.WHITE + "Changing ROOT password :)")
-#changeRootPasswd.changeRootPasswd()
+updatePostgresql.updatePostgres()
 
 # Update & Upgrade
 #print(Fore.WHITE + "Doing apt update && apt upgrade :)")
-#upgrade.upgrade()
+upgrade.upgrade()
 
 # Installing Tools
 #print(Fore.WHITE + "Installing PenTest tools :)")
-#installTools.installTools()
-
-# Install Optional Tools
-#import optional-tools
-#optional-tools.installOptTools()
+installTools.installTools()
 
 # Cleaning Up
-#cleanup.cleanup()
+cleanup.cleanup()
 
-# --------------
-# Function Calls
-# --------------
+# Changing Keyboard Layout
+# print(Fore.WHITE + "Changing Keyboard Layout :)")
+# import changeKeyboardLayout
+#changeKeyboardLayout.changeKeyboardLayout()
 
-# networking()
-# addUser()
-# changeRootPwd()
-# changeKeyboardLayout()
-# upgrade()
-# installTools()
-# installOptTools()
-# cleanup()
-# -
+# Network configuration
+#print(Fore.WHITE + "Configuring local Network settings")
+#networking.networkConfig()

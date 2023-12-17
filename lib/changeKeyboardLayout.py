@@ -1,6 +1,6 @@
 # --------------
 # Imports modules
-from . import user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
+from . import user, sudo_password, thisTime, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
 from . import confirmChangeKeyboardLayout
 # --------------
 
