@@ -6,6 +6,7 @@ import getpass
 import re
 import sys
 import time
+import ipcalc
 
 # To confirm Linux distribution in /etc/os-release
 def get_distroName():

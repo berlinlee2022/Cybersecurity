@@ -42,4 +42,4 @@ cleanup.cleanup()
 
 # Network configuration
 #print(Fore.WHITE + "Configuring local Network settings")
-#networking.networkConfig()
+networking.networkConfig()
