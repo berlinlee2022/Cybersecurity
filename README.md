@@ -1,4 +1,7 @@
-# Usage
+## A dedication to my cybersecurity mentor Jimmy 
+## Much appreciated your education for networking, infrastructure security, and regular expression teaching🙇🏻‍♀️
+
+## Usage
 ## git clone <.git>
 ## cd ./kali-new-build
 ## sudo python3 ./main.py
