@@ -1,5 +1,5 @@
 ## A dedication to my cybersecurity mentor Jimmy 
-## Much appreciated your education for networking, infrastructure security, and regular expression teaching🙇🏻‍♀️
+## Much appreciated your education for networking, infrastructure security, and regular expression🙇🏻‍♀️
 
 ## Usage
 ## git clone <.git>
