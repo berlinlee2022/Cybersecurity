@@ -1,3 +1,5 @@
+## This repo helps you configure Kali Linux & install tools much faster via Python automation
+## right after you configured a NIC for internet connection :D
 ## Cybersecurity tool - Kali Linux
 ![Kali Linux](https://i.ytimg.com/vi/0LajChcEkP0/maxresdefault.jpg)
 
