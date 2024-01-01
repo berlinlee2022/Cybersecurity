@@ -1,6 +1,9 @@
 ## Cybersecurity tool - Kali Linux
 ![Kali Linux](https://i.ytimg.com/vi/0LajChcEkP0/maxresdefault.jpg)
 
+## Ethical Hacking
+![Ethical Hacking](https://media.licdn.com/dms/image/D4D12AQHZBU6pxH7LZQ/article-cover_image-shrink_600_2000/0/1686636471875?e=2147483647&v=beta&t=-UIGq76Snqp-gB_bUmLfSnFo6KFYE2r7VUT5iIY4BYg)
+
 ## A dedication to my cybersecurity mentor Jimmy 
 ## Much appreciated your education for Networking, Infrastructure Security, and Regular Expression🙇🏻‍♀️
 
