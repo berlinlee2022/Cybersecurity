@@ -1,5 +1,11 @@
 ## This repo helps you configure Kali Linux & install tools much faster via Python automation
 ## right after you configured a NIC for internet connection :D
+
+## Usage
+## git clone <.git>
+## cd ./kali-new-build
+## sudo python3 ./main.py
+
 ## Cybersecurity tool - Kali Linux
 ![Kali Linux](https://i.ytimg.com/vi/0LajChcEkP0/maxresdefault.jpg)
 
@@ -8,11 +14,6 @@
 
 ## A dedication to my cybersecurity mentor Jimmy 
 ## Much appreciated your education for Networking, Infrastructure Security, and Regular Expression🙇🏻‍♀️
-
-## Usage
-## git clone <.git>
-## cd ./kali-new-build
-## sudo python3 ./main.py
 
 ## =========================================================================================================================
 # Kali Linux new build script
