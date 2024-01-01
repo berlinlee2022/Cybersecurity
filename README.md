@@ -1,12 +1,11 @@
-## This repo helps you configure Kali Linux & install tools much faster via Python automation
+## This repo helps you unleash Kali Linux & install tools much faster via Python automation
 ## right after you configured a NIC for internet connection :D
 
 ## Usage
-## git clone <.git>
-## cd ./kali-new-build
-## sudo python3 ./main.py
+## git clone https://github.com/phoenixyork166/Kali-Rebuild-Auto.git
+## cd ./Kali-Rebuild-Auto && sudo python3 ./main.py
 
-## Cybersecurity tool - Kali Linux
+## Cybersecurity Red teaming with Kali Linux
 ![Kali Linux](https://i.ytimg.com/vi/0LajChcEkP0/maxresdefault.jpg)
 
 ## Ethical Hacking
