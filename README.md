@@ -11,9 +11,9 @@
 ## Ethical Hacking
 ![Ethical Hacking](https://media.licdn.com/dms/image/D4D12AQHZBU6pxH7LZQ/article-cover_image-shrink_600_2000/0/1686636471875?e=2147483647&v=beta&t=-UIGq76Snqp-gB_bUmLfSnFo6KFYE2r7VUT5iIY4BYg)
 
-## A dedication to my cybersecurity mentor Jimmy 
-## Much appreciated your education for Networking, Infrastructure Security, and Regular Expression🙇🏻‍♀️
-
+## This repo is a dedication to my cybersecurity mentor: Jimmy gor🙇🏻‍♀️ 
+## Much appreciated your education for Orchestration, advanced Networking, Infrastructure Security and Regular Expression🙇🏻‍♀️
+## No Jimmy, no me🙇🏻‍♀️
 ## =========================================================================================================================
 # Kali Linux new build script
 ## Hi this script will do following tasks for you
