@@ -6,7 +6,7 @@ import getpass
 import re
 import sys
 import time
-import ipcalc
+#import ipcalc
 
 # To confirm Linux distribution in /etc/os-release
 def get_distroName():
@@ -131,24 +131,24 @@ def passingInstallTools():
 confirmInstallTools = passingInstallTools()
 
 ## For customizing a NIC
-confirmNetworking = input("Do you wanna configure a network interface? [Y/N]: ")
-def passingNetworking():
-    if confirmNetworking.lower() == 'y' and user.lower() == 'root':
-        print(Fore.YELLOW + f'\nWill set up a NIC for you :)\n')
-        return confirmNetworking
-    else:
-        print(Fore.YELLOW + f'\nNot gonna set up a NIC\nSkipping...\n')
-        return None
-confirmNetworking = passingNetworking()
+# confirmNetworking = input("Do you wanna configure a network interface? [Y/N]: ")
+# def passingNetworking():
+#     if confirmNetworking.lower() == 'y' and user.lower() == 'root':
+#         print(Fore.YELLOW + f'\nWill set up a NIC for you :)\n')
+#         return confirmNetworking
+#     else:
+#         print(Fore.YELLOW + f'\nNot gonna set up a NIC\nSkipping...\n')
+#         return None
+# confirmNetworking = passingNetworking()
 
 ## For customizing Keyboard Layout
-confirmChangeKeyboardLayout = input("Do you wanna change keyboard layout? [Y/N]: ")
-def passingKeyboard():
-    if confirmChangeKeyboardLayout.lower() == 'y' and user.lower() == 'root':
-        print(Fore.YELLOW + f'\nWill change keyboard layout :)\n')
-        return confirmChangeKeyboardLayout
-    else:
-        print(Fore.YELLOW + f'\nNot gonna change keyboard layout\n')
-        return None
-confirmChangeKeyboardLayout = passingKeyboard()
+# confirmChangeKeyboardLayout = input("Do you wanna change keyboard layout? [Y/N]: ")
+# def passingKeyboard():
+#     if confirmChangeKeyboardLayout.lower() == 'y' and user.lower() == 'root':
+#         print(Fore.YELLOW + f'\nWill change keyboard layout :)\n')
+#         return confirmChangeKeyboardLayout
+#     else:
+#         print(Fore.YELLOW + f'\nNot gonna change keyboard layout\n')
+#         return None
+# confirmChangeKeyboardLayout = passingKeyboard()
 
