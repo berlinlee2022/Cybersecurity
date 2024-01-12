@@ -16,6 +16,10 @@ from lib import addUser, updatePostgresql, upgrade, installTools, cleanup
 #browser = webdriver.firefox(firefox_binary=binary)
 # ===============
 
+# Update & Upgrade
+#print(Fore.WHITE + "Doing apt update && apt upgrade :)")
+upgrade.upgrade()
+
 # Add new Low Privilege User Account
 #print(Fore.WHITE + "### Creating a Low Priv User ###")
 #print(Style.RESET_ALL)
@@ -24,10 +28,6 @@ addUser.addUser()
 # Update PostgreSQL config :)
 #print(Fore.WHITE + "Updating PostgreSQL ports :)")
 updatePostgresql.updatePostgres()
-
-# Update & Upgrade
-#print(Fore.WHITE + "Doing apt update && apt upgrade :)")
-upgrade.upgrade()
 
 # Installing Tools
 #print(Fore.WHITE + "Installing PenTest tools :)")

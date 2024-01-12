@@ -6,7 +6,9 @@ from . import user, sudo_password, distroName, initializeModules, Fore, sys, os,
 # Import module specific variables
 from . import thisTime
 from . import user, sudo_password
-from . import newUser, newPassword, confirmUpgrade
+from . import confirmUpgrade
+
+confirmUpgrade = 'y'
 
 # Update && upgrade Kali repository
 def upgrade():
