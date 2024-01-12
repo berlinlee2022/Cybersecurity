@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # ==============
 # Import Colorama
 from colorama import Fore, Back, Style

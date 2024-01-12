@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # --------------
 # Imports modules
 # --------------
@@ -8,14 +10,13 @@ from . import user, sudo_password
 from . import newUser, newPassword, confirmInstallTools
 
 def installTools():
-
     if confirmInstallTools.lower() == "y":
         # Default Tools
         print(Fore.YELLOW + "### Installing Default Tools ###")
 
         # Create directory 'tools'
         print(Fore.YELLOW + "***********************************")
-        print(Fore.YELLOW + "Creating /home/{newUser}/Desktop/tools")
+        print(Fore.YELLOW + f'Creating /home/{newUser}/Desktop/tools')
         print(Fore.YELLOW + "***********************************")
         print(Style.RESET_ALL)
         createHome = f'echo {sudo_password} | sudo mkdir /home/{newUser}'
@@ -498,7 +499,7 @@ def installTools():
                 else:
                     print(Fore.RED + f'\nFailed to start Beef-XSS using systemctl at\n{thisTime}\n\nYou may manually start Beef-XSS by:\nsudo systemctl start beef-xss\n\n')
             else:
-            print(Fore.RED + f'\nFailed to enable Beef-XSS by:\nsudo systemctl enable beef-xss\nat\n{thisTime}\nSkipping...\n')
+                print(Fore.RED + f'\nFailed to enable Beef-XSS by:\nsudo systemctl enable beef-xss\nat\n{thisTime}\nSkipping...\n')
         else: 
             print(Fore.RED + f'\nFailed to apt install beef-XSS -y at\n{thisTime}\nSkipping...\n')
             

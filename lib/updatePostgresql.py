@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # Imports modules
 # --------------
 from . import user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
