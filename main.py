@@ -1,8 +1,9 @@
 # ==============
 # Import Colorama
 from colorama import Fore, Back, Style
+from lib import addUser, updatePostgresql, upgrade, installTools, cleanup
 # Importing modules from ./lib
-from lib import addUser, updatePostgresql, upgrade, installTools, cleanup, networking, changeKeyboardLayout
+#from lib import addUser, updatePostgresql, upgrade, installTools, cleanup, networking, changeKeyboardLayout
 # --------------
 # Imports module 'webdriver' from 'selenium'
 # Trying to automate some key send actions in Firefox
@@ -42,4 +43,4 @@ cleanup.cleanup()
 
 # Network configuration
 #print(Fore.WHITE + "Configuring local Network settings")
-networking.networkConfig()
+# networking.networkConfig()

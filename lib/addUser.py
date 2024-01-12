@@ -19,7 +19,6 @@ def addUser():
         print(Style.RESET_ALL)
 
         # Changing current password for {newUser} so that he/she can login
-        #changePassword = f'echo {sudo_password} | sudo usermod --password'
         changePassword = f'echo "{newUser}:{newPassword}" | chpasswd'
         doChangePassword = subprocess.run(changePassword, shell=True, text=True, capture_output=True)
 
@@ -27,7 +26,6 @@ def addUser():
             print(Fore.YELLOW + f'\nSucceeded in creating password for new privileged user: {newUser}!!')
             print(Fore.YELLOW + f'System stdout: {doChangePassword.stdout}')
 
-            #usermod = os.system("sudo usermod -aG sudo " + user)
             print(Fore.WHITE + "\nAdding this new privileged user to Sudoers...")
             print(Style.RESET_ALL)
             # Adding 'user' to usermod -aG
@@ -46,42 +44,21 @@ def addUser():
                 addBash = f'echo {sudo_password} | sudo chsh -s /bin/bash {newUser}'
                 doAddBash = subprocess.run(addBash, shell=True, text=True, capture_output=True)
 
-                if doAddBash.returncode == 0:
-                    print(Fore.WHITE + "\nAdding this privileged user to Bash runner has succeeded!\n")
-                    print(Fore.WHITE + f'System stdout: {doAddBash.stdout}')
-                    print(Style.RESET_ALL)
 
-                    # Adding 'user' to /ect/sudoers
-                    addSudoer = f'echo {sudo_password} | sudo echo "{newUser}\tALL=(ALL) ALL" >> /etc/sudoers'
-                    doAddSudoer = subprocess.run(addSudoer, shell=True, text=True, capture_output=True)
+                # Adding 'user' to /ect/sudoers
+                addSudoer = f'echo {sudo_password} | sudo echo "{newUser}\tALL=(ALL) ALL" >> /etc/sudoers'
+                doAddSudoer = subprocess.run(addSudoer, shell=True, text=True, capture_output=True)
 
-                    if doAddSudoer.returncode == 0:
-                        print(Fore.YELLOW + f'Succeeded in adding {newUser} to /etc/sudoers with {newUser}\t ALL=(ALL) ALL!\nSucceeded in completing adduser process :)!\nCompletion time: {thisTime}\n')
-                        print(Fore.YELLOW + f'System stdout: {doAddSudoer.stdout}')
-                        print(Style.RESET_ALL)
-                    else:
-                        print(Fore.RED + f'Failed to add {newUser} to /etc/sudoers group :(\nExiting process...\n')
-                        print(Fore.RED + f'System stderr: {doAddSudoer.stderr}')
-                        print(Style.RESET_ALL)
-                        sys.exit()
-
-                else:
-                    print(Fore.RED + f'Failed to adding this privileged user: {newUser} to Bash runner:(\nExiting...\n')
-                    print(Fore.RED + f'System stderr: {doAddBash.stderr}')
-                    print(Style.RESET_ALL)
-                    sys.exit()
             
             else:
                 print(Fore.RED + f'Failed to change usermod for this privileged user: {newUser} :(\nExiting all processes...\n')
                 print(Fore.RED + f'System stderr: {doUsermod.stderr}')
                 print(Style.RESET_ALL)
-                sys.exit()
                 
         # If failed to change password for {newUser}
         else:
             print(Fore.RED + f'\nFailed to create a new password for {newUser}...\nExiting...\n')
             print(Fore.RED + f'System stderr: {doChangePassword.stderr}')
-            sys.exit()
             
     # If failed to create a new priviledged user
     else:
@@ -89,7 +66,6 @@ def addUser():
         print(Fore.RED + f'Terminal output: {doAddPrivUser.stdout}')
         print(Fore.RED + f'System stderr for adding {newUser}: {doAddPrivUser.stderr}')
         print(Style.RESET_ALL)
-        sys.exit()
 
         
 
