@@ -42,18 +42,6 @@ def getCredentials():
     try:
         print(Fore.WHITE + "\nProceeding...\n")
         user = input(Fore.WHITE + "Please enter [root]: ")
-        if user.lower() == "root":
-            print(Fore.YELLOW + f'Verifying that your\'re {user}...')
-            if os.geteuid() == 0:
-                print(Fore.YELLOW + f"Successfully verified that you're root :)!\nProceeding...\n")
-            else:
-                print(Fore.RED + f'You aren\'t root :(\nExiting process...\n')
-                exit()
-        
-        else:
-            print(Fore.RED + f'Sorry, you aren\'t ROOT\nYou can only run this python as ROOT :(')
-            exit()
-
         sudo_password = getpass.getpass(prompt='Enter sudo password: ')
         return user, sudo_password
 
@@ -61,6 +49,7 @@ def getCredentials():
         # Handle exceptions
         print(Fore.RED + f'Error retrieving root credentials from script user: {str(e)}')
         print(Fore.RED + 'Terminating script running & all Shell processes...\n')
+        return None, None
 
 # Returning user, sudo_password from getCredentials()
 user, sudo_password = getCredentials()
@@ -72,21 +61,11 @@ def timer():
         return thisTime
 
     except Exception as e:
-        sys.exit("Failed to retrieve current time :(\n")
+        print(Fore.RED + f'Failed to retrieve current time :(\n')
+        return None
 thisTime = timer();
     
 
-# main.py
-#from lib 
-#import addUser
-#updatePostgresql
-#upgrade
-#installTools
-#optionalTools
-#changeKeyboardLayout
-#networking
-#changeRootPasswd
-#cleanup
 confirmAddUser = input("Do you wanna add a new priviledged user? [Y/N]: ")
 def passingUser():
     
