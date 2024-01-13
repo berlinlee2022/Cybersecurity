@@ -527,6 +527,6 @@ def installTools():
         else:
             print(Fore.RED + f'\nFailed to install OpenVAS...\nat:\n{thisTime}\nCheck whether you\'ve run PostgreSQL 15 && 14 PORTs update...\nFailed to swap PostgreSQL15 TCP port (e.g. 5432) AND PostgreSQL14 TCP ports (e.g. 5433) will induce this kind of error...\n')
 
-        print(Fore.WHITE + f'\n\nAll open-source tools are installed!!\nProceeding to clean up phase!\n')
+        print(Fore.WHITE + f'\n\nAttempted Installation of Open-source tools\n')
     else:
         print(Fore.RED + f'Failed to confirm Tools Installation...Skipping...')
