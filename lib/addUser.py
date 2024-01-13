@@ -31,7 +31,7 @@ def addUser():
 
 
         # Adding 'user' to /ect/sudoers
-        addSudoer = f'echo {sudo_password} | sudo echo "{newUser}\tALL=(ALL) ALL" >> /etc/sudoers'
+        addSudoer = f'echo {sudo_password} | sudo printf "{newUser}\tALL=(ALL)\tALL" >> /etc/sudoers'
         doAddSudoer = subprocess.run(addSudoer, shell=True, text=True, capture_output=True)
     else:
         print(Fore.RED + f'Could not confirm {newUser} OR {newPassword}...\nSkipping...\n')
