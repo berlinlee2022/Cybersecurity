@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import os
 import colorama
 from colorama import Fore, Back, Style
