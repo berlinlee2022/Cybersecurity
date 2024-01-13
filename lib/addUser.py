@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # Import these for every module component
 # --------------
 # Imports modules
