@@ -8,11 +8,9 @@ from . import thisTime
 from . import user, sudo_password
 from . import confirmUpgrade
 
-confirmUpgrade = 'y'
-
 # Update && upgrade Kali repository
 def upgrade():
-    if confirmUpgrade.lower() == 'y':
+    if confirmUpgrade is not None and confirmUpgrade.lower() == 'y':
         print(Fore.WHITE + f'******************************************')
         print(Fore.WHITE + f'*****Updating Kali Linux archive keys*****')
         print(Fore.WHITE + f'******************************************')
@@ -105,8 +103,13 @@ def upgrade():
         doChmod2 = subprocess.Popen(chmod, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doChmod2.wait()
 
+        if doChmod2.returncode == 0:
+            print(Fore.YELLOW + f'Succeeded in changing chmod 644 for:\n/etc/apt/sources.list\n')
+        else:
+            print(Fore.RED + f'Failed to change chmod 644 for:\n/etc/apt/sources.list...\nSkipping...\n')
+
     else: 
-        print(Fore.RED + f'\nFailed to chmod 777 /etc/apt/sources.list at:\n{thisTime}\n\nNot updating & upgrading apt...\n')
+        print(Fore.RED + f'Could NOT confirmUpgrade is Y\nInput was {confirmUpgrade}\nSkipping...\n')
 
         
 

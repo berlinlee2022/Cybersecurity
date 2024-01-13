@@ -17,6 +17,7 @@ def get_distroName():
                     # Extact distribution name and remove quotes
                     return line.split('=')[1].strip().strip('"')
     except FileNotFoundError:
+        print(Fore.RED + f'Could NOT confirm Linux Distribution...\nSkipping...\n')
         return None
 
 # Move distroName outside the function
@@ -49,7 +50,7 @@ def getCredentials():
         # Handle exceptions
         print(Fore.RED + f'Error retrieving root credentials from script user: {str(e)}')
         print(Fore.RED + 'Terminating script running & all Shell processes...\n')
-        return None, None
+        sys.exit()
 
 # Returning user, sudo_password from getCredentials()
 user, sudo_password = getCredentials()
@@ -62,7 +63,6 @@ def timer():
 
     except Exception as e:
         print(Fore.RED + f'Failed to retrieve current time :(\n')
-        return None
 thisTime = timer();
     
 
@@ -71,54 +71,56 @@ def passingUser():
     
     # Adding a new privileged user
     # Sanity checks
-    if confirmAddUser.lower() == 'y' and user.lower() == 'root': 
+    if confirmAddUser and confirmAddUser.lower() == 'y': 
 
         newUser = input("Enter new privileged user name: ")
         newPassword = getpass.getpass("Enter your new privileged user password: ")
         confirmNewPassword = getpass.getpass("Enter your new privileged user password: ")
+        # Default match = False
+        match = False
 
         if newPassword == confirmNewPassword:
+            match = True
             print(Fore.YELLOW + "Will add a new privileged user for you :)")
+            return newUser, newPassword
         else:
-            #print(Fore.RED + f'New passwords NOT match!\nExiting...\n')
-            return None, None
+            match = False
+            print(Fore.YELLOW + f'newPassword: {newPassword} does NOT Match confirmNewPassword: {confirmNewPassword}\nPlease re-enter the new password')
+            newPassword = getpass.getpass("Enter your new privileged user password: ")
+            confirmNewPassword = getpass.getpass("Enter your new privileged user password: ")           
     else:
         print(Fore.YELLOW + f'NOT gonna add a new priviledged user\nSkipping...\n')
-        return None, None
         
-    return newUser, newPassword
 # Passing newUser, newPassword inputs from passingUser() to this.module
 newUser,newPassword = passingUser()
 
 # To update PostgreSQL 15 && 14 TCP ports (5432 && 5433)
 confirmUpdatePostgres = input("Do you wanna update PostgreSQL14 & 15 ports 5432? [Y/N]: ")
 def passingPostgres():
-    if confirmUpdatePostgres.lower() == 'y' and user.lower() == 'root':
+    if confirmUpdatePostgres and confirmUpdatePostgres.lower() == 'y':
         print(Fore.YELLOW + f'Will update postgreSQL 15 & 14 ports :)...\n')
+        return confirmUpdatePostgres
     else:
         print(Fore.YELLOW + f'NOT gonna update postgreSQL 15 & 14 ports\nSkipping...\n')
-        return None
-
-    return confirmUpdatePostgres
+    
 # Passing confirmUpdatePostgres inputs from passingPostgres() to this.module 
 confirmUpdatePostgres = passingPostgres()
 
 # To update http.kali.org => https.kali.org
 confirmUpgrade = input("Do you wanna upgrade apt & kali repo? [Y/N]: ")
 def passingUpgrade():
-    if confirmUpgrade.lower() == 'y' and user.lower() == 'root':
+    if confirmUpgrade and confirmUpgrade.lower() == 'y':
         print(Fore.YELLOW + f'\n\nWill update Kali repository connection using HTTPS\nto allow apt update && apt upgrade\n\n')
         return confirmUpgrade
     else:
         print(Fore.YELLOW + f'\n\nWill NOT update Kali repository\n\nYou have to manually edit Kali repository config file\nhttp://kali.org => https://kali.org\nAND update the Kali keys from Kali archive\nin order to get apt install functions working...\n\n')
-        return None
 # Passing confirmUpgrade inputs from passingUpgrade() users' inputs to this.module
 confirmUpgrade = passingUpgrade()
 
 ## For installing open-source tools
 confirmInstallTools = input("Do you wanna install tools? [Y/N]: ")
 def passingInstallTools():
-    if confirmInstallTools.lower() == 'y' and user.lower() == 'root' and newUser:
+    if confirmInstallTools and confirmInstallTools.lower() == 'y':
         print(Fore.YELLOW + f'Will install Open-source tools for you:\nPackage managers\n[e.g. Python3-pip, SNAP, GEM, NixNote2, Nautilus-dropbox, Keepassxc, DNF\n')
         print(Fore.YELLOW + f'Will install Open-source tools: 1N3/Sn1per for you :)\n')
         print(Fore.YELLOW + f'Will install pyautogui for you:)\n')
@@ -126,29 +128,26 @@ def passingInstallTools():
         return confirmInstallTools
     else:
         print(Fore.YELLOW + f'Either {newUser} does NOT exist OR\nScript runner != ROOT OR\nScript runner does NOT want to install open-source tools\nSkipping...\n')
-        return None
 # Passing confirmInstallTools inputs from passingInstallTools() users' inputs to this.module
 confirmInstallTools = passingInstallTools()
 
 ## For customizing a NIC
 # confirmNetworking = input("Do you wanna configure a network interface? [Y/N]: ")
 # def passingNetworking():
-#     if confirmNetworking.lower() == 'y' and user.lower() == 'root':
+#     if confirmNetworking and confirmNetworking.lower() == 'y':
 #         print(Fore.YELLOW + f'\nWill set up a NIC for you :)\n')
 #         return confirmNetworking
 #     else:
 #         print(Fore.YELLOW + f'\nNot gonna set up a NIC\nSkipping...\n')
-#         return None
 # confirmNetworking = passingNetworking()
 
 ## For customizing Keyboard Layout
 # confirmChangeKeyboardLayout = input("Do you wanna change keyboard layout? [Y/N]: ")
 # def passingKeyboard():
-#     if confirmChangeKeyboardLayout.lower() == 'y' and user.lower() == 'root':
+#     if confirmChangeKeyboardLayout and confirmChangeKeyboardLayout.lower() == 'y':
 #         print(Fore.YELLOW + f'\nWill change keyboard layout :)\n')
 #         return confirmChangeKeyboardLayout
 #     else:
 #         print(Fore.YELLOW + f'\nNot gonna change keyboard layout\n')
-#         return None
 # confirmChangeKeyboardLayout = passingKeyboard()
 

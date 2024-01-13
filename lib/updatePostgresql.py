@@ -8,7 +8,7 @@ from . import user, sudo_password
 
 def updatePostgres():
 
-    if confirmUpdatePostgres == 'y':
+    if confirmUpdatePostgres is not None and confirmUpdatePostgres.lower() == 'y':
 
         print(Fore.YELLOW + "\nUpdating PosgreSQL 15 port from port 5433 to port 5432...\n")
         
@@ -56,4 +56,6 @@ def updatePostgres():
             print(Fore.RED + "\nRestarting PostgreSQL service has failed...:(\n")
             print(doRestartPostgres.stderr)
             print(Style.RESET_ALL)
+    else:
+        print(Fore.RED + f'Could NOT confirm {confirmUpdatePostgres} is Y\nSkipping...\n')
     
