@@ -1,6 +1,3 @@
-#!/usr/bin/python3
-
-# ==============
 # Import Colorama
 from colorama import Fore, Back, Style
 from lib import addUser, updatePostgresql, upgrade, installTools, cleanup
