@@ -28,7 +28,7 @@ def updatePostgres():
 
         # Changing port 5432 => 5433 for PostgreSQL14 to allow update
         #os.system('sudo sed -i \'s/port \= 5432/port \= 5433/g\' /etc/postgresql/15/main/postgresql.conf')
-        updatePostgres14 = f'echo {sudo_password} | sudo sed -i \'s/port \= 5432/port \= 5433/g\' /etc/postgresql/15/main/postgresql.conf'
+        updatePostgres14 = f'echo {sudo_password} | sudo sed -i \'s/port \= 5432/port \= 5433/g\' /etc/postgresql/14/main/postgresql.conf'
         doUpdatePostgres14 = subprocess.Popen(updatePostgres14, shell=True)
         doUpdatePostgres14.wait()
 
