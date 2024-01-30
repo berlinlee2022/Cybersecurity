@@ -57,5 +57,5 @@ def updatePostgres():
             print(doRestartPostgres.stderr)
             print(Style.RESET_ALL)
     else:
-        print(Fore.RED + f'Could NOT confirm {confirmUpdatePostgres} is Y\nSkipping...\n')
+        print(Fore.RED + f'Could NOT confirmUpdatePostgres is Y\nInput was {confirmUpdatePostgres}\nSkipping...\n')
     
