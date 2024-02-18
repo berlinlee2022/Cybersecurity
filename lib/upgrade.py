@@ -25,24 +25,30 @@ def upgrade():
 
         if doUpdateExpiredKeys.returncode == 0:
             print(Fore.WHITE + f'{doUpdateExpiredKeys_out}')
-            print(Fore.YELLOW + f'********Succeeded in performing Action 1. Updating expired keys\n{doUpdateExpiredKeys_out}\nat\n{thisTime}***')
+            print(f'\n')
+            print(Fore.YELLOW + f'********Succeeded in performing Action 1. Updating expired keys\n{doUpdateExpiredKeys_out}\nat\n{thisTime}')
             print(Fore.YELLOW + f'***************************************************************************************************************')
+            print(f'\n')
+            print(f'\n')
         else:
             print(Fore.WHITE + f'{doUpdateExpiredKeys_err}')
-            print(Fore.RED + f'Failed to perform Action 1. Updating expried keys on Kali base-build image\n{doUpdateExpiredKeys_err}at\n{thisTime}\n\n') 
+            print(f'\n')
+            print(Fore.RED + f'Failed to perform Action 1. Updating expried keys on Kali base-build image\nat\n{thisTime}\n\n')
         
         # Update Kali.org Repo
         # Temporarily changing chmod for /etc/apt/sources.list
-        print(Fore.YELLOW + "\nChanging chmod for /etc/apt/sources.list to 777 temporarily...\n")
+        print(Fore.YELLOW + "Changing chmod for /etc/apt/sources.list to 777 temporarily...\n")
         chmod = f'echo {sudo_password} | sudo chmod 777 /etc/apt/sources.list'
         doChmod = subprocess.Popen(chmod, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         doChmod_out, doChmod_err = doChmod.communicate()
         if doChmod.returncode == 0:
             print(Fore.WHITE + f'{doChmod_out}')
-            print(Fore.YELLOW + f'Succeeded in temporarily chmod 777 /etc/apt/source.lists\n')
+            print(f'\n')
+            print(Fore.YELLOW + f'Succeeded in temporarily chmod 777 /etc/apt/source.lists\n\n')
         else:
             print(Fore.WHITE + f'{doChmod_err}')
-            print(Fore.RED + f'Failed to temporarily chmod 777 /etc/apt/sources.list\n')
+            print(f'\n')
+            print(Fore.RED + f'Failed to temporarily chmod 777 /etc/apt/sources.list\n\n')
 
         print(Fore.YELLOW + f'Proceeding to configure HTTPS Kali Linux repo...\n')
         addDeb = f'echo {sudo_password} | sudo printf "deb https://http.kali.org/kali kali-rolling main non-free contrib\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib" > /etc/apt/sources.list'
@@ -51,11 +57,17 @@ def upgrade():
 
         if doAddDeb.returncode == 0:
             print(Fore.WHITE + f'{doAddDeb_out}')
+            print(f'\n')
             print(Fore.YELLOW + f'\nSucceeded in adding below:\ndeb https://http.kali.org/kali kali-rolling main non-free contrib\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib\nat:\n{thisTime}\n\n')
             print(Fore.YELLOW + "*******************************************")
+            print(f'\n')
+            print(f'\n')
         else:
             print(Fore.RED + f'{doAddDeb_err}')
-            print(Fore.RED + f'Failed to add following config to /etc/apt/sources.list\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib\nat:\n{thisTime}\n\n')
+            print(f'\n')
+            print(Fore.RED + f'Failed to add following config to /etc/apt/sources.list\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib\nat:\n{thisTime}\n')
+            print(f'\n')
+            print(f'\n')
         
         # Print /etc/apt/sources.list config
         # No matter changes are made or NOT
@@ -67,8 +79,12 @@ def upgrade():
         print(Fore.YELLOW + "*******************************************")
         if printAptConfig.returncode == 0:
             print(f'{printAptConfig_out}')
+            print(f'\n')
+            print(f'\n')
         else:
             print(f'{printAptConfig_err}')
+            print(f'\n')
+            print(f'\n')
                     
         # Update && Upgrade
         print(Fore.YELLOW + "##########################################################")
@@ -81,29 +97,46 @@ def upgrade():
             
         if doUpdateAndUpgrade.returncode == 0:
             print(Fore.WHITE + f'{doUpdateAndUpgrade_out}')
-            print(Fore.YELLOW + f'\nSucceeded in updating && upgrading APT at:\n{thisTime}\n\n')
-            print(Fore.YELLOW + f'\nCurrent /etc/apt/sources.list is as following:\n')
+            print(f'\n')
+            print(Fore.YELLOW + f'\nSucceeded in updating && upgrading APT at:\n{thisTime}')
+            print(f'\n')
+            print(f'\n')
+            print(Fore.YELLOW + f'\nCurrent /etc/apt/sources.list is as following:')
+            print(f'\n')
+            print(f'\n')
                         
         else:
             print(Fore.WHITE + f'{doUpdateAndUpgrade_err}')
-            print(Fore.RED + f'\nFailed to update && upgrade APT at:\n{thisTime}\n\n')
+            print(f'\n')
+            print(Fore.RED + f'\nFailed to update && upgrade APT at:\n{thisTime}')
+            print(f'\n')
+            print(f'\n')
 
         # Changing chmod for /etc/apt/sources.list back to 644
-        print(Fore.YELLOW + "\nChanging chmod for /etc/apt/sources.list back to 644...\n")
+        print(Fore.YELLOW + "\nChanging chmod for /etc/apt/sources.list back to 644...")
+        print(f'\n')
         chmodBack = f'echo {sudo_password} | sudo chmod 644 /etc/apt/sources.list'
         doChmodBack = subprocess.Popen(chmodBack, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doChmodBack_out, doChmodBack_err = doChmodBack.communicate()
 
         if doChmodBack.returncode == 0:
             print(Fore.WHITE + f'{doChmodBack_out}')
-            print(Fore.YELLOW + f'Succeeded in changing chmod 644 for:\n/etc/apt/sources.list\n')
-            
+            print(f'\n')
+            print(Fore.YELLOW + f'Succeeded in changing chmod 644 for:\n/etc/apt/sources.list')
+            print(f'\n')
+            print(f'\n')            
         else:
             print(Fore.WHITE + f'{doChmodBack_err}')
-            print(Fore.RED + f'Failed to change chmod 644 for:\n/etc/apt/sources.list...\nSkipping...\n')
-
+            print(f'\n')
+            print(Fore.RED + f'Failed to change chmod 644 for:\n/etc/apt/sources.list...\nSkipping...')
+            print(f'\n')
+            print(f'\n')
     else: 
-        print(Fore.RED + f'Could NOT confirmUpgrade is Y\nInput was {confirmUpgrade}\nSkipping...\n')
+        print(f'\n')
+        print(f'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+        print(Fore.RED + f'Could NOT confirmUpgrade is Y\nInput was {confirmUpgrade}\nSkipping...')
+        print(f'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+        print(f'\n')
 
         
 
