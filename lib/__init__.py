@@ -80,14 +80,13 @@ def passingUser():
         match = False
 
         if newPassword == confirmNewPassword:
-            match = True
+            #match = True
             print(Fore.YELLOW + "Will add a new privileged user for you :)")
             return newUser, newPassword
         else:
-            match = False
-            newUser = None
-            newPassword = None
-            return newUser, newPassword
+            #match = False
+            print(Fore.YELLOW + f'NOT gonna add a new priviledged user\nSkipping...\n')
+            return None, None
     else:
         print(Fore.YELLOW + f'NOT gonna add a new priviledged user\nSkipping...\n')
         
@@ -135,7 +134,6 @@ def passingInstallTools():
         print(Fore.YELLOW + f'Either {newUser} does NOT exist OR\nScript runner != ROOT OR\nScript runner does NOT want to install open-source tools\nSkipping...\n')
         confirmInstallTools = 'n'
         return confirmInstallTools
-    
 # Passing confirmInstallTools inputs from passingInstallTools() users' inputs to this.module
 confirmInstallTools = passingInstallTools()
 
