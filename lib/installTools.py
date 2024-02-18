@@ -14,12 +14,14 @@ def installTools():
 
         # Create directory 'tools'
         print(Fore.YELLOW + "***********************************")
-        print(Fore.YELLOW + f'Creating /home/{newUser}/Desktop/tools')
+        print(Fore.YELLOW + f'Creating /home/{newUser}/')
         print(Fore.YELLOW + "***********************************")
-        print(Style.RESET_ALL)
         createHome = f'echo {sudo_password} | sudo mkdir /home/{newUser}'
         doCreateHome = subprocess.Popen(createHome, shell=True, text=True)
-        doCreateHome.wait()
+        doCreateHome_out, doCreateHome_err = doCreateHome.communicate()
+        if doCreateHome.returncode == 0:
+            print(Fore.WHITE + f'{doCreateHome_out}')
+        
 
         createDesktop = f'echo {sudo_password} | sudo mkdir /home/{newUser}/Desktop'
         doCreateDesktop = subprocess.Popen(createDesktop, shell=True, text=True)
