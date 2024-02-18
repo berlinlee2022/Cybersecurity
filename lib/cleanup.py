@@ -14,12 +14,26 @@ def cleanup():
         print(Fore.YELLOW + "########################")
         #os.system('sudo -u {} sudo apt autoremove -y && sudo apt autoclean -y'.format(user))
         cleanUp = f'echo {sudo_password} | sudo apt autoremove -y && sudo apt autoclean -y'
-        doCleanUp = subprocess.Popen(cleanUp, shell=True, text=True)
-        doCleanUp.wait()
+        doCleanUp = subprocess.Popen(cleanUp, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        doCleanUp_out, doCleanUp_err = doCleanUp.communicate()
 
         if doCleanUp.returncode == 0:
-            print(Fore.YELLOW + f'\nSucceeded in Cleaning up APT at:\n{thisTime}\n\n')
+            print(f'\n')
+            print(Fore.WHITE + f'{doCleanUp_out}')
+            print(f'\n')
+            print(f'\n')
+            print(Fore.YELLOW + f'Succeeded in Cleaning up APT at:\n{thisTime}')
+            print(f'\n')
+            print(f'\n')
         else:
-            print(Fore.RED + f'\nFailed to clean up APT\nSkipping at:\n{thisTime}\n\n')
+            print(f'\n')
+            print(Fore.WHITE + f'{doCleanUp_err}')
+            print(f'\n')
+            print(Fore.RED + f'Failed to clean up APT\nSkipping at:\n{thisTime}')
+            print(f'\n')
+            print(f'\n')
     else:
-        print(Fore.WHITE + f'\nSkipping apt clean up, as open-source tools were not installed...\n')
+        print(f'\n')
+        print(Fore.WHITE + f'Skipping apt clean up\nBecause confirmUpgrade is: {confirmUpgrade}\n\nOpen-source tools were not installed...')
+        print(f'\n')
+        print(f'\n')
