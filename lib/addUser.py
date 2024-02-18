@@ -50,7 +50,7 @@ def addUser():
                     print(Fore.YELLOW + f'Succeeded in adding {newUser} to Bash group\n\n')
                     # Adding 'user' to /ect/sudoers config
                     addSudoer = f'echo {sudo_password} | sudo printf "{newUser}\tALL=(ALL)\tALL" >> /etc/sudoers'
-                    doAddSudoer = subprocess.run(addSudoer, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    doAddSudoer = subprocess.Popen(addSudoer, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     doAddSudoer_out, doAddSudoer_err = doAddSudoer.communicate()
                     if doAddSudoer.returncode == 0:
                         print(Fore.YELLOW + f'Succeeded in adding {newUser} to /etc/sudoer config\n{doAddSudoer_out}')                        

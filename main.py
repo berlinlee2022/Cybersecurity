@@ -45,6 +45,4 @@ def main():
     #print(Fore.WHITE + "Configuring local Network settings")
     # networking.networkConfig()
 
-# Run the entire program using main.py as this is the only executable Python script
-if __name__ == '__main__':
-    main()
+main()

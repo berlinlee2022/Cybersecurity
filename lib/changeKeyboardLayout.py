@@ -14,15 +14,29 @@ def changeKeyboardLayout():
         #keyboardUser = input(Fore.WHITE + "Please enter who you're changing keyboard layout for [username]: ")
 
         changeKeyboard = f'echo {sudo_password} | sudo -u {user} dpkg-reconfigure keyboard-configuration'
-        doChangeKeyboard = subprocess.run(changeKeyboard, shell=True, text=True, capture_output=True)
+        doChangeKeyboard = subprocess.Popen(changeKeyboard, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        doChangeKeyboard_out, doChangeKeyboard_err = doChangeKeyboard.communicate()
 
         if doChangeKeyboard.returncode == 0:
-            print(Fore.YELLOW + f'Succeeded in changing keyboard layout :D!\nProceeding...\n')
+            print(f'\n')
+            print(f'{doChangeKeyboard_out}')
+            print(f'\n')
+            print(f'\n')
+            print(Fore.YELLOW + f'Succeeded in changing keyboard layout :D!\nProceeding...')
+            print(f'\n')
             print(Fore.YELLOW + f'System stdout: {doChangeKeyboard.stdout}')
+            print(f'\n')
+            print(f'\n')
         else:
-            print(Fore.RED + f'Failed to change keyboard layout...\nExiting...\n')
-            sys.exit()
+            print(Fore.RED + f'Failed to change keyboard layout...\nExiting...')
+            print(f'\n')
+            print(f'\n')
+            #sys.exit()
 
     else:
-        print(Fore.WHITE + "\nNot gonna change keyboard layout...\nSkipping...\n")
+        print(f'\n')
+        print(f'\n')
+        print(Fore.WHITE + "Not gonna change keyboard layout...\nSkipping...")
+        print(f'\n')
+        print(f'\n')
 
