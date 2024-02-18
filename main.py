@@ -15,31 +15,36 @@ from lib import addUser, updatePostgresql, upgrade, installTools, cleanup
 #browser = webdriver.firefox(firefox_binary=binary)
 # ===============
 
-# Update & Upgrade
-#print(Fore.WHITE + "Doing apt update && apt upgrade :)")
-upgrade.upgrade()
+def main():
+    # Update & Upgrade
+    #print(Fore.WHITE + "Doing apt update && apt upgrade :)")
+    upgrade.upgrade()
 
-# Add new Low Privilege User Account
-#print(Fore.WHITE + "### Creating a Low Priv User ###")
-#print(Style.RESET_ALL)
-addUser.addUser()
+    # Add new Low Privilege User Account
+    #print(Fore.WHITE + "### Creating a Low Priv User ###")
+    #print(Style.RESET_ALL)
+    addUser.addUser()
 
-# Update PostgreSQL config :)
-#print(Fore.WHITE + "Updating PostgreSQL ports :)")
-updatePostgresql.updatePostgres()
+    # Update PostgreSQL config :)
+    #print(Fore.WHITE + "Updating PostgreSQL ports :)")
+    updatePostgresql.updatePostgres()
 
-# Installing Tools
-#print(Fore.WHITE + "Installing PenTest tools :)")
-installTools.installTools()
+    # Installing Tools
+    #print(Fore.WHITE + "Installing PenTest tools :)")
+    installTools.installTools()
 
-# Cleaning Up
-cleanup.cleanup()
+    # Cleaning Up
+    cleanup.cleanup()
 
-# Changing Keyboard Layout
-# print(Fore.WHITE + "Changing Keyboard Layout :)")
-# import changeKeyboardLayout
-#changeKeyboardLayout.changeKeyboardLayout()
+    # Changing Keyboard Layout
+    # print(Fore.WHITE + "Changing Keyboard Layout :)")
+    # import changeKeyboardLayout
+    #changeKeyboardLayout.changeKeyboardLayout()
 
-# Network configuration
-#print(Fore.WHITE + "Configuring local Network settings")
-# networking.networkConfig()
+    # Network configuration
+    #print(Fore.WHITE + "Configuring local Network settings")
+    # networking.networkConfig()
+
+# Run the entire program using main.py as this is the only executable Python script
+if __name__ == '__main__':
+    main()
