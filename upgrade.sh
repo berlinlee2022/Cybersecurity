@@ -160,7 +160,6 @@ then
     else
         echo "Failed to update Kali Linux keys...";
         echo "======================================";
-        exit 1;
     fi
 
     # Backup existing Debian repository
@@ -259,7 +258,6 @@ then
                 echo "";
                 echo "Before running the Tools installation script";
                 echo "";
-                exit 0; 
 
                 echo "Changing Kernel settings to disable Restart pop-ip in /etc/needrestart/needrestart.conf";
                 echo "To avoid Daemons Restart pop-up during Open-source attack tools installation";
@@ -272,32 +270,24 @@ then
                     echo "Succeeded in disabling Daemon pop-up before Tools installation";
                     echo "Please reboot before running this script to install tools :D!!";
                     echo "DONE DONE DONE DONE DONE DONE DONE";
-                    exit 0;
                 else
                     echo "Failed to disable Daemon pop-up";
                     echo "Daemon alert may come up during Tools installation";
-                    exit 1;
                 fi
 
             else
                 echo "We feel sorry that your Debian did NOT become a Kali Linux :(";
-                exit 1;
                 # Terminate Customization here if failed to become a Kali linux
             fi
 
         else
             echo "Failed to customize this Debian repo to Kali repo...";
-            echo "Exiting...";
-            exit 1;
         fi
 
     else
         echo "Failed to back up existing Apt repo";
         echo "Skipping Debian customization...";
-        exit 1;
     fi
 else
     echo "You aren't ROOT";
-    echo "Exiting...";
-    exit 1;
 fi

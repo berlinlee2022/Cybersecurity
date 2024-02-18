@@ -172,12 +172,8 @@ then
     fi
     ## END - OpenVAS Installation & configurations 
     echo "Succeeded in configuring Tools :D";
-    echo "Exiting with 0";
-    exit 0;
 
 # If script runner is NOT ROOT
 else
     echo "Sorry, you aren't ROOT :(";
-    echo "Exiting with 1...";
-    exit 1;
 fi

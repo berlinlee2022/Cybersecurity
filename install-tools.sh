@@ -318,15 +318,11 @@ then
         echo "This script has run successfully! :D";
         echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
         echo "Please run bash ./configure.sh";
-        exit 0;
     else   
         echo "Failed to install tools...";
-        exit 1;
     fi
 
 else
     echo "You aren't ROOT :(";
-    echo "Exiting with 1...";
-    exit 1;
 fi
 
