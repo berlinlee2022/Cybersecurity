@@ -11,7 +11,7 @@ def addUser():
     if newUser is not None and newPassword is not None:
         # Adding a new privileged user
         addPrivUser = f'echo {sudo_password} | sudo adduser {newUser}'
-        doAddPrivUser = subprocess.Popen(addPrivUser, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        doAddPrivUser = subprocess.Popen(addPrivUser, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doAddPrivUser_out, doAddPrivUser_err = doAddPrivUser.communicate()
         
         if doAddPrivUser.returncode == 0:
@@ -21,7 +21,7 @@ def addUser():
                 
         # Changing current password for {newUser} so that he/she can login
         changePassword = f'echo "{newUser}:{newPassword}" | chpasswd'
-        doChangePassword = subprocess.Popen(changePassword, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        doChangePassword = subprocess.Popen(changePassword, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doChangePassword_out, doChangePassword_err = doChangePassword.communicate()
         if doChangePassword.returncode == 0:
             print(Fore.WHITE + f'{doChangePassword_out}')
@@ -30,7 +30,7 @@ def addUser():
             
             # Adding 'user' to usermod -aG
             usermod = f'echo {sudo_password} | sudo usermod -aG sudo {newUser}'
-            doUsermod = subprocess.Popen(usermod, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            doUsermod = subprocess.Popen(usermod, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             doUsermod_out, doUsermod_err = doUsermod.communicate()
             if doUsermod.returncode == 0:
                 print(Fore.WHITE + f'{doUsermod_out}')
@@ -41,7 +41,7 @@ def addUser():
                 print(Fore.YELLOW + f'\nAdding this new privileged user: {newUser} to Bash group...\n\n')
                 #addBash = os.system("sudo chsh -s /bin/bash " + user)
                 addBash = f'echo {sudo_password} | sudo chsh -s /bin/bash {newUser}'
-                doAddBash = subprocess.Popen(addBash, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                doAddBash = subprocess.Popen(addBash, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 doAddBash_out, doAddBash_err = doAddBash.communicate()
                 
                 if doAddBash.returncode == 0:
@@ -50,7 +50,7 @@ def addUser():
                     print(Fore.YELLOW + f'Succeeded in adding {newUser} to Bash group\n\n')
                     # Adding 'user' to /ect/sudoers config
                     addSudoer = f'echo {sudo_password} | sudo printf "{newUser}\tALL=(ALL)\tALL" >> /etc/sudoers'
-                    doAddSudoer = subprocess.run(addSudoer, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    doAddSudoer = subprocess.run(addSudoer, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     doAddSudoer_out, doAddSudoer_err = doAddSudoer.communicate()
                     if doAddSudoer.returncode == 0:
                         print(Fore.YELLOW + f'Succeeded in adding {newUser} to /etc/sudoer config\n{doAddSudoer_out}')                        

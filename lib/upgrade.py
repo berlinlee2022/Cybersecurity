@@ -20,7 +20,7 @@ def upgrade():
         #os.system('sudo wget https://archive.kali.org/archive-key.asc -O /etc/apt/trusted.gpg.d/kali-archive-keyring.asc')
         updateExpiredKeys = f'echo {sudo_password} | sudo wget https://archive.kali.org/archive-key.asc -O /etc/apt/trusted.gpg.d/kali-archive-keyring.asc'
 
-        doUpdateExpiredKeys = subprocess.Popen(updateExpiredKeys, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        doUpdateExpiredKeys = subprocess.Popen(updateExpiredKeys, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doUpdateExpiredKeys_out, doUpdateExpiredKeys_err = doUpdateExpiredKeys.communicate()
 
         if doUpdateExpiredKeys.returncode == 0:
@@ -39,7 +39,7 @@ def upgrade():
         # Temporarily changing chmod for /etc/apt/sources.list
         print(Fore.YELLOW + "Changing chmod for /etc/apt/sources.list to 777 temporarily...\n")
         chmod = f'echo {sudo_password} | sudo chmod 777 /etc/apt/sources.list'
-        doChmod = subprocess.Popen(chmod, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        doChmod = subprocess.Popen(chmod, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doChmod_out, doChmod_err = doChmod.communicate()
         if doChmod.returncode == 0:
             print(Fore.WHITE + f'{doChmod_out}')
@@ -52,7 +52,7 @@ def upgrade():
 
         print(Fore.YELLOW + f'Proceeding to configure HTTPS Kali Linux repo...\n')
         addDeb = f'echo {sudo_password} | sudo printf "deb https://http.kali.org/kali kali-rolling main non-free contrib\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib" > /etc/apt/sources.list'
-        doAddDeb = subprocess.Popen(addDeb, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        doAddDeb = subprocess.Popen(addDeb, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doAddDeb_out, doAddDeb_err = doAddDeb.communicate()
 
         if doAddDeb.returncode == 0:
@@ -74,7 +74,7 @@ def upgrade():
         print(Fore.YELLOW + "*******************************************")
         print(Fore.YELLOW + "Current APT config is: \n")
         aptConfig = f'echo {sudo_password} | sudo cat /etc/apt/sources.list'
-        printAptConfig = subprocess.Popen(aptConfig, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        printAptConfig = subprocess.Popen(aptConfig, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         printAptConfig_out, printAptConfig_err = printAptConfig.communicate()
         print(Fore.YELLOW + "*******************************************")
         if printAptConfig.returncode == 0:
@@ -92,7 +92,7 @@ def upgrade():
         print(Fore.WHITE + "\nDoing apt update && apt upgrade now...\n")
         #os.system('sudo apt update && sudo apt upgrade -yuf')
         updateAndUpgrade = f'echo {sudo_password} | sudo apt update && sudo apt upgrade -yuf'
-        doUpdateAndUpgrade = subprocess.Popen(updateAndUpgrade, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        doUpdateAndUpgrade = subprocess.Popen(updateAndUpgrade, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doUpdateAndUpgrade_out, doUpdateAndUpgrade_err = doUpdateAndUpgrade.communicate()
             
         if doUpdateAndUpgrade.returncode == 0:
@@ -116,7 +116,7 @@ def upgrade():
         print(Fore.YELLOW + "\nChanging chmod for /etc/apt/sources.list back to 644...")
         print(f'\n')
         chmodBack = f'echo {sudo_password} | sudo chmod 644 /etc/apt/sources.list'
-        doChmodBack = subprocess.Popen(chmodBack, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        doChmodBack = subprocess.Popen(chmodBack, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doChmodBack_out, doChmodBack_err = doChmodBack.communicate()
 
         if doChmodBack.returncode == 0:

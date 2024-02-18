@@ -14,7 +14,7 @@ def cleanup():
         print(Fore.YELLOW + "########################")
         #os.system('sudo -u {} sudo apt autoremove -y && sudo apt autoclean -y'.format(user))
         cleanUp = f'echo {sudo_password} | sudo apt autoremove -y && sudo apt autoclean -y'
-        doCleanUp = subprocess.Popen(cleanUp, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        doCleanUp = subprocess.Popen(cleanUp, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doCleanUp_out, doCleanUp_err = doCleanUp.communicate()
 
         if doCleanUp.returncode == 0:

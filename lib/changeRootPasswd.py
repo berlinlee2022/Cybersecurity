@@ -11,7 +11,7 @@ def changeRootPasswd():
         print(Fore.YELLOW + "### Changing root default pwd ###")
 
         changeRootPasswd = f'sudo passwd root'
-        doChangeRootPasswd = subprocess.Popen(changeRootPasswd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        doChangeRootPasswd = subprocess.Popen(changeRootPasswd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doChangeRootPasswd_out, doChangeRootPasswd_err = doChangeRootPasswd.communicate()
 
         if doChangeRootPasswd.returncode == 0:
