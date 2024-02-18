@@ -8,16 +8,15 @@ from . import thisTime
 from . import newUser, newPassword
 
 def addUser():
-    if newUser is not None and newPassword is not None:
-        # Adding a new privileged user
-        addPrivUser = f'echo {sudo_password} | sudo adduser {newUser}'
-        doAddPrivUser = subprocess.Popen(addPrivUser, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        doAddPrivUser_out, doAddPrivUser_err = doAddPrivUser.communicate()
+    # Adding a new privileged user
+    addPrivUser = f'echo {sudo_password} | sudo adduser {newUser}'
+    doAddPrivUser = subprocess.Popen(addPrivUser, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    doAddPrivUser_out, doAddPrivUser_err = doAddPrivUser.communicate()
         
-        if doAddPrivUser.returncode == 0:
-            print(f'{doAddPrivUser_out}')
-            print(f'\n')
-            print(Fore.YELLOW + f'Succeeded in add new Priviledged User :D')            
+    if doAddPrivUser.returncode == 0:
+        print(f'{doAddPrivUser_out}')
+        print(f'\n')
+        print(Fore.YELLOW + f'Succeeded in add new Priviledged User :D')            
                 
         # Changing current password for {newUser} so that he/she can login
         changePassword = f'echo "{newUser}:{newPassword}" | chpasswd'
@@ -71,10 +70,10 @@ def addUser():
             print(f'\n')
             print(Fore.RED + f'Failed to create the password for {newUser}\nSkipping...\n\n')
     else:
-        print(Fore.WHITE + f'{doAddPrivUser_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to Create New Priviledged User\n\nCould NOT confirm {newUser} OR {newPassword}...\nSkipping...\n\n\n\n\n')
-
+        print(f'{doAddPrivUser_err}')
+        print(f'\n')
+        print(f'\n')
 
         
 
