@@ -96,6 +96,7 @@ then
     tools=('net-tools'
             'tor'
             'proxychains'
+            'python3-pip'
             'guake'
             'tmux'
             'tcpdump'

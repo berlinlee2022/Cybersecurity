@@ -1,3 +1,16 @@
+# Usage
+# 1. Upgrade Kali Repo
+# bash upgrade.sh
+##
+# 2. Install Attack Tools
+# bash install-tools.sh
+##
+# 3. Configure Tools
+# bash configure.sh
+##
+# 4. Install Python3 dependencies
+# bash install-pymodules.sh
+##
 ## This repo is a dedication to my cybersecurity mentor: Jimmy gor🙇🏻‍♀️ 
 ##
 ## Much appreciated your education for Orchestration, advanced Network defenses, Infrastructure Security and Regular Expression🙇🏻‍♀️
