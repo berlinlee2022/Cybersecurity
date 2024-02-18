@@ -10,7 +10,7 @@ from . import confirmUpgrade
 
 # Update && upgrade Kali repository
 def upgrade():
-    if confirmUpgrade.lower() == 'y':
+    if confirmUpgrade != None and confirmUpgrade.lower() == 'y':
         print(Fore.WHITE + f'******************************************')
         print(Fore.WHITE + f'*****Updating Kali Linux archive keys*****')
         print(Fore.WHITE + f'******************************************')

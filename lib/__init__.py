@@ -102,7 +102,8 @@ def passingPostgres():
         return confirmUpdatePostgres
     else:
         print(Fore.YELLOW + f'NOT gonna update postgreSQL 15 & 14 ports\nSkipping...\n')
-        return None
+        confirmUpdatePostgres = 'n'
+        return confirmUpdatePostgres
     
 # Passing confirmUpdatePostgres inputs from passingPostgres() to this.module 
 confirmUpdatePostgres = passingPostgres()
@@ -115,7 +116,8 @@ def passingUpgrade():
         return confirmUpgrade
     else:
         print(Fore.YELLOW + f'\n\nWill NOT update Kali repository\n\nYou have to manually edit Kali repository config file\nhttp://kali.org => https://kali.org\nAND update the Kali keys from Kali archive\nin order to get apt install functions working...\n\n')
-        return None
+        confirmUpgrade = 'n'
+        return confirmUpgrade
     
 # Passing confirmUpgrade inputs from passingUpgrade() users' inputs to this.module
 confirmUpgrade = passingUpgrade()
@@ -133,7 +135,8 @@ def passingInstallTools():
         print(Fore.YELLOW + f'NOT want to install open-source tools\nSkipping...')
         print(f'\n')
         print(f'\n')
-        return None
+        confirmInstallTools = 'n'
+        return confirmInstallTools
 # Passing confirmInstallTools inputs from passingInstallTools() users' inputs to this.module
 confirmInstallTools = passingInstallTools()
 
