@@ -108,7 +108,7 @@ def passingPostgres():
 confirmUpdatePostgres = passingPostgres()
 
 # To update http.kali.org => https.kali.org
-confirmUpgrade = input("Do you wanna upgrade apt & kali repo? [Y/N]: ")
+confirmUpgrade = input("Do you wanna upgrade apt & kali repo? [Y/N]: ").strip()
 def passingUpgrade():
     if confirmUpgrade and confirmUpgrade.lower() == 'y':
         print(Fore.YELLOW + f'\n\nWill update Kali repository connection using HTTPS\nto allow apt update && apt upgrade\n\n')
@@ -130,7 +130,9 @@ def passingInstallTools():
         print(Fore.YELLOW + f'')
         return confirmInstallTools
     else:
-        print(Fore.YELLOW + f'Either {newUser} does NOT exist OR\nScript runner != ROOT OR\nScript runner does NOT want to install open-source tools\nSkipping...\n')
+        print(Fore.YELLOW + f'NOT want to install open-source tools\nSkipping...')
+        print(f'\n')
+        print(f'\n')
         return None
 # Passing confirmInstallTools inputs from passingInstallTools() users' inputs to this.module
 confirmInstallTools = passingInstallTools()

@@ -8,7 +8,7 @@ from . import user, sudo_password
 from . import newUser, newPassword, confirmInstallTools
 
 def installTools():
-    if confirmInstallTools is not None and confirmInstallTools.lower() == "y":
+    if confirmInstallTools.lower() == "y":
         # Default Tools
         print(Fore.YELLOW + "### Installing Default Tools ###")
 

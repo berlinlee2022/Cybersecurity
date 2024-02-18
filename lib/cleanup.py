@@ -8,7 +8,7 @@ from . import user, sudo_password
 
 def cleanup():
 
-    if confirmUpgrade is not None and confirmUpgrade.lower() == 'y':
+    if confirmUpgrade.lower() == 'y':
         print(Fore.YELLOW + "########################")
         print(Fore.YELLOW + "### Cleaning up APT ###")
         print(Fore.YELLOW + "########################")

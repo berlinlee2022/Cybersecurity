@@ -10,7 +10,7 @@ from . import confirmUpgrade
 
 # Update && upgrade Kali repository
 def upgrade():
-    if confirmUpgrade is not None and confirmUpgrade.lower() == 'y':
+    if confirmUpgrade.lower() == 'y':
         print(Fore.WHITE + f'******************************************')
         print(Fore.WHITE + f'*****Updating Kali Linux archive keys*****')
         print(Fore.WHITE + f'******************************************')
@@ -133,9 +133,7 @@ def upgrade():
             print(f'\n')
     else: 
         print(f'\n')
-        print(f'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
         print(Fore.RED + f'Could NOT confirmUpgrade is Y\nInput was {confirmUpgrade}\nSkipping...')
-        print(f'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
         print(f'\n')
 
         

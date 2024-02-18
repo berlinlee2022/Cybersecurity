@@ -9,7 +9,7 @@ import ipcalc
 # Configure Linux networking at ease :)
 def networkConfig():
 
-    if confirmNetworking.lower() == "y" and user.lower() == 'root':
+    if confirmNetworking.lower() == "y":
         
         # Configuring a network interface
         nic = input(Fore.YELLOW + f'Enter a network interface iface name [e.g. eth0]: ')
