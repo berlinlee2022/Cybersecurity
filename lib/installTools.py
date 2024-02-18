@@ -146,12 +146,12 @@ def installTools():
             print(f'\n')
                   
         changeSn1perPermission = f'echo {sudo_password} | sudo chown {newUser} {path}S1nper; echo {sudo_password} | sudo chmod 777 {newUser} {path}Sn1per; echo {sudo_password} | sudo chown {newUser} {path}Sn1per/install.sh; echo {sudo_password} | sudo chmod 777 {newUser} {path}Sn1per/install.sh'
-        doChangeSn1perPermission = subprocess.Popen(changeSn1perPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission_out.communicate()
+        doChangeSn1perPermission = subprocess.run(changeSn1perPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission_out.communicate()
 
         if doChangeSn1perPermission.returncode == 0:
-            print(f'\n')
-            print(Fore.WHITE + f'{doChangeSn1perPermission_out}')
+            #print(f'\n')
+            #print(Fore.WHITE + f'{doChangeSn1perPermission_out}')
             print(f'\n')
             print(Fore.YELLOW + f'Succeeded in changing Sn1per ownership to {newUser} at\n{thisTime}')
             print(f'\n')
@@ -160,7 +160,7 @@ def installTools():
             print(f'\n')
         else:
             print(f'\n')
-            print(Fore.WHITE + f'{doChangeSn1perPermission_err}')
+            #print(Fore.WHITE + f'{doChangeSn1perPermission_err}')
             print(Fore.RED + f'Failed to change Sn1per ownership to {newUser}...\nSkipping...')
             print(f'\n')
             print(f'\n')                
@@ -168,8 +168,8 @@ def installTools():
         #Downloading Sherlock
         print(Fore.YELLOW + "\nDownloading Sherlock...\n")
         downloadSherlock = f'echo {sudo_password} | sudo git clone https://github.com/sherlock-project/sherlock.git'
-        doDownloadSherlock = subprocess.Popen(downloadSherlock, shell=True)
-        doDownloadSherlock_out, doDownloadSherlock_err = doDownloadSherlock.communciate()
+        doDownloadSherlock = subprocess.Popen(downloadSherlock, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        doDownloadSherlock_out, doDownloadSherlock_err = doDownloadSherlock.communicate()
 
         if doDownloadSherlock.returncode == 0:
             print(f'\n')
@@ -184,7 +184,7 @@ def installTools():
             print(f'\n')
         
         changeSherlockPermission = f'echo {sudo_password} | sudo chown {newUser} {path}sherlock; echo {sudo_password} | sudo chmod 777 {newUser} {path}sherlock; echo {sudo_password} | sudo chown {newUser} {path}sherlock;'
-        doChangeSherlockPermission = subprocess.Popen(changeSherlockPermission, shell=True)
+        doChangeSherlockPermission = subprocess.Popen(changeSherlockPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doChangeSherlockPermission_out, doChangeSherlockPermission_err = doChangeSherlockPermission.communicate()
 
         if doChangeSherlockPermission.returncode == 0:
