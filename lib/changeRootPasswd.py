@@ -9,19 +9,28 @@ def changeRootPasswd():
     if confirm.lower() == "y" and user == "root":
         #sudo_password = getpass.getpass(prompt='Please enter your sudo password: ')
         print(Fore.YELLOW + "### Changing root default pwd ###")
-        print(Style.RESET_ALL)
 
-        #os.system('sudo -u {} sudo passwd root'.format(user))
         changeRootPasswd = f'sudo passwd root'
-        doChangeRootPasswd = subprocess.Popen(changeRootPasswd, shell=True)
-        doChangeRootPasswd.wait()    
+        doChangeRootPasswd = subprocess.Popen(changeRootPasswd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        doChangeRootPasswd_out, doChangeRootPasswd_err = doChangeRootPasswd.communicate()
 
         if doChangeRootPasswd.returncode == 0:
+            print(f'\n')
+            print(doChangeRootPasswd_out)
+            print(f'\n')
             print(Fore.YELLOW + "Changing ROOT passwd was done!")
-            print(doChangeRootPasswd.stdout)
+            print(f'\n')
+            print(f'\n')
         else:
+            print(f'\n')
+            print(Fore.WHITE + f'{doChangeRootPasswd_err}')
+            print(f'\n')
             print(Fore.RED + "Changing ROOT passwd failed :(")
-            print(doChangeRootPasswd.stderr)
+            print(f'\n')
+            print(f'\n')
     else:
-        print(Fore.WHITE + "\nNot gonna change ROOT passwd...\nSkipping...\n")
+        print(f'\n')
+        print(Fore.WHITE + "NOT gonna change ROOT passwd...\nSkipping...")
+        print(f'\n')
+        print(f'\n')
     
