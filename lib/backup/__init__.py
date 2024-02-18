@@ -8,6 +8,9 @@ import sys
 import time
 #import ipcalc
 
+# Import all lib
+from lib import addUser, updatePostgresql, upgrade, installTools, cleanup
+
 # To confirm Linux distribution in /etc/os-release
 def get_distroName():
     try:
