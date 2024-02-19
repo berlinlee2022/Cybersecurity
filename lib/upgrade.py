@@ -2,13 +2,10 @@
 # --------------
 # Imports modules
 # --------------
-from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
-# Import module specific variables
-from . import formatted_time
-#from . import user, sudo_password
+from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 
 # Update && upgrade Kali repository
-def upgrade(user, sudo_password):
+def upgrade(user, sudo_password, formatted_time):
 
     print(Fore.WHITE + f'******************************************')
     print(Fore.WHITE + f'*****Updating Kali Linux archive keys*****')

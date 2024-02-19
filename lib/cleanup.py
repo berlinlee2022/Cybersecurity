@@ -2,9 +2,6 @@
 # Imports modules
 # --------------
 from . import Fore, sys, os, Back, Style, getpass, subprocess, re
-# Import module specific variables
-from . import confirmUpgrade
-#from . import user, sudo_password
 
 def cleanup(user, sudo_password, formatted_time):
 

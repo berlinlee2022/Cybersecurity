@@ -1,10 +1,6 @@
 # Imports modules
 # --------------
 from . import Fore, sys, os, Back, Style, getpass, subprocess, re
-# Import module specific variables
-from . import thisTime
-from . import confirmUpdatePostgres
-#from . import user, sudo_password
 
 def updatePostgres(user, sudo_password, formatted_time):
 
