@@ -65,7 +65,7 @@ def networkConfig(user, sudo_password, formatted_time):
                     print(Fore.YELLOW + f'{nic} gateway: {gateway} seems reasonable :)\nProceeding to create this NIC...')
                     print(f'\n')
                     # Adding this NIC configuration to /etc/network/interfaces
-                    addInterface = f'echo {sudo_password} | sudo printf "\nauto {nic}\niface {nic} inet static\naddress {ip}\nnetmask {netmask}\ngateway {gateway}" >> /etc/network/interfaces'
+                    addInterface = f'echo {sudo_password} | sudo printf "\nauto {nic}\niface {nic} inet static\naddress {ip}\nnetmask {netmask}\ngateway {gateway}\nup route add -net {networkAddressIP} netmask {netmask} gw {gateway}" >> /etc/network/interfaces'
                     doAddInterface = subprocess.Popen(addInterface, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     doAddInterface_out, doAddInterface_err = doAddInterface.communicate()
                         
@@ -76,9 +76,26 @@ def networkConfig(user, sudo_password, formatted_time):
                         print(Fore.YELLOW + f'Succeeded in adding {nic} to /etc/network/interfaces :)\nProceeding to restart networking.service using systemctl!')
                         print(f'\n')
                         print(f'\n')
+                        print(Fore.YELLOW + f'Adding DNS server to /etc/resolv.conf')
+                        resolvConf = f'/etc/resolv.conf'
+                        dns_server = f'echo {sudo_password} | printf "nameserver {gateway}" >> {resolvConf}'
+                        add_dns_server = subprocess.Popen(dns_server, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                        add_dns_server_out, add_dns_server_err = add_dns_server.communicate()
+                        if add_dns_server.returncode == 0:
+                            print(f'\n')
+                            print(Fore.WHITE + f'{add_dns_server_out}')
+                            print(f'\n')
+                            print(Fore.YELLOW + f'Succeeded in adding a new DNS server to {resolvConf} at {formatted_time}')
+                            print(f'\n')
+                            print(f'\n')
+                        else:
+                            print(f'\n')
+                            print(Fore.WHITE + f'{add_dns_server_err}')
+                            print(f'\n')
+                            print(f'\n')
                             
                         # Restarting networking.service => systemctl stop networking.service
-                        stopNetwork = f'echo {sudo_password} | sudo systemctl stop networking.service'
+                        stopNetwork = f'echo {sudo_password} | sudo /etc/init.d/networking stop'
                         doStopNetwork = subprocess.Popen(stopNetwork, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                         doStopNetwork_out, doStopNetwork_err = doStopNetwork.communicate()
 
@@ -86,10 +103,10 @@ def networkConfig(user, sudo_password, formatted_time):
                             print(f'\n')
                             print(Fore.WHITE + f'{doStopNetwork_out}')
                             print(f'\n')
-                            print(Fore.YELLOW + f'Succeeded in stopping networking.service :)\nProceeding to start networking.service')
+                            print(Fore.YELLOW + f'Succeeded in stopping networking.service :)\nProceeding to start networking.service at {formatted_time}')
                             print(f'\n')
                                 
-                            startNetwork = f'echo {sudo_password} | sudo systemctl start networking.service'
+                            startNetwork = f'echo {sudo_password} | sudo /etc/init.d/networking start'
                             doStartNetwork = subprocess.Popen(startNetwork, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                             doStartNetwork_out, doStartNetwork_err = doStartNetwork.communicate()
                             if doStartNetwork.returncode == 0:
@@ -98,32 +115,10 @@ def networkConfig(user, sudo_password, formatted_time):
                                 print(Fore.YELLOW + f'Succeeded in starting networking.service :)\nProceeding to sudo ip route add {ip}/{cidr} via {gateway} dev {nic}')
                                 print(f'\n')
                                 print(f'\n')
-                                    
-                                routeAdd = f'echo {sudo_password} | sudo ip route add {networkAddressIP}/{cidr} via {gateway} dev {nic}'
-                                doRouteAdd = subprocess.Popen(routeAdd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                                doRouteAdd_out, doRouteAdd_err = doRouteAdd.communicate()
-                                    
-                                if doRouteAdd.returncode == 0:
-                                    print(f'\n')
-                                    print(Fore.WHITE + f'{doRouteAdd_out}')
-                                    print(f'\n')
-                                    print(Fore.YELLOW + f'Succeeded in adding default gateway: {gateway} for {nic} :)\nTesting internet connection...')
-                                    print(f'\n')
-                                    print(f'\n')
-            
-                                else:
-                                    print(f'\n')
-                                    print(f'{doRouteAdd_err}')
-                                    print(f'\n')
-                                    print(f'\n')
-                                    print(Fore.RED + f'Failed to ip route add {networkAddressIP}/{cidr} via {gateway} dev {nic} at:\n{formatted_time} :(')
-                                    print(f'\n')
-                                    print(f'\n')
-                                    print(Fore.RED + f'You may manually add a route by:\nsudo ip route add {networkAddressIP}/{cidr} via {gateway} dev {nic}')
-                                    print(f'\n')
-                                    print(f'\n')        
+                                      
                             else:
                                 print(f'\n')
+                                print(Fore.WHITE + f'{doStartNetwork_err}')
                                 print(f'\n')
                                 print(Fore.RED + f'Failed to start networking.service :(\nPlease manually start networking.service by:\nsudo systemctl start networking.service\nExiting...')
                                 print(f'\n')
