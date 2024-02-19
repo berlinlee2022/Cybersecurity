@@ -51,7 +51,9 @@ def getCredentials():
         get_user = f'whoami'
         doGetUser = subprocess.Popen(get_user, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doGetUser_out, doGetUser_err = doGetUser.communicate()
-        user = doGetUser_out
+        user = doGetUser_out.decode().strip()
+        print(f'Current user: {user}')
+        print(f'\n')
         sudo_password = getpass.getpass(prompt='Enter sudo password: ')
         return user, sudo_password
 
