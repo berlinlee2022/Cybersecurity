@@ -502,7 +502,7 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         print(f'\n')
         print(f'\n')
     #beefuser = input(Fore.YELLOW + "Enter new username for Beef-XSS UI login: ")
-    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\: beef/user\: {user}/g\' {beefConf}; echo {sudo_password} | sudo sed -i \'s/passwd\: beef/passwd\: {newPassword}/g\' {beefConf}'
+    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\: "beef"/user\: {user}/g\' {beefConf}; echo {sudo_password} | sudo sed -i \'s/passwd\: "beef"/passwd\: {newPassword}/g\' {beefConf}'
     doEditLogin=subprocess.Popen(editLoginCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doEditLogin_out, doEditLogin_err = doEditLogin.communicate()
                         
@@ -554,6 +554,8 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         print(Fore.YELLOW + f'\nSucceeded in restarting Beef-XSS at\n{formatted_time}')
         print(f'\n')
         print(Fore.YELLOW + f'\n\nBeef-XSS is now accessible at http://127.0.0.1:3000/ui/authentication')
+        print(f'\n')
+        print(Fore.YELLOW + f'Type command \'beef-xss\' to start Beef-XSS Web Browser for using :D')
         print(f'\n')
         print(f'\n')
     else:
