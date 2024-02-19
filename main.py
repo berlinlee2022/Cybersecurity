@@ -94,7 +94,7 @@ confirmUpgrade = input("Do you wanna upgrade apt & kali repo? [Y/N]: ").strip()
 confirmInstallTools = input("Do you wanna install tools? [Y/N]: ")
 
 # Whether addUser()
-if confirmAddUser.lower == 'y':
+if confirmAddUser.lower() == 'y':
     # Adding a new privileged user
     # Sanity checks
     newUser = input("Enter new privileged user name: ")
@@ -139,8 +139,9 @@ if confirmInstallTools.lower() == 'y':
     print(f'\n')
     print(f'Package managers\n[e.g. Python3-pip, SNAP, GEM, NixNote2, Nautilus-dropbox, Keepassxc, DNF\n')
     print(Fore.YELLOW + f'')
+    newUser = input('Enter newUser for Attack Tools [root]: ')
     newPassword = getpass.getpass('Enter newPassword for Tools: ')
-    installTools.installTools(user, sudo_password, formatted_time, newPassword)
+    installTools.installTools(user, sudo_password, formatted_time, newUser, newPassword)
 else:
     print(f'\n')
     print(Fore.YELLOW + f'NOT want to install open-source tools\nSkipping...')

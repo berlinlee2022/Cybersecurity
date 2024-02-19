@@ -3,7 +3,7 @@
 # --------------
 from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 
-def installTools(user, sudo_password, formatted_time, newPassword):
+def installTools(user, sudo_password, formatted_time, newUser, newPassword):
 
     binary_path = f'/usr/bin/'
     # Default Tools
