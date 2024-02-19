@@ -9,7 +9,7 @@ import time
 #import ipcalc
 
 # Import all lib
-from lib import addUser, updatePostgresql, upgrade, installTools, cleanup
+from lib import addUser, updatePostgres, upgrade, installTools, cleanup
 
 # To confirm Linux distribution in /etc/os-release
 def get_distroName():
@@ -120,7 +120,7 @@ else:
 # Whether updatePostgresql()
 if confirmUpdatePostgres.lower() == 'y':
     print(Fore.YELLOW + f'Will update postgreSQL 15 & 14 ports :)...\n')
-    updatePostgresql.updatePostgresql(user, sudo_password, formatted_time)
+    updatePostgres.updatePostgres(user, sudo_password, formatted_time)
     pass    
 else:
     print(Fore.YELLOW + f'NOT gonna update postgreSQL 15 & 14 ports\nSkipping...\n')    

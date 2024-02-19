@@ -2,8 +2,6 @@
 # Imports modules
 # --------------
 from . import Fore, sys, os, Back, Style, getpass, subprocess, re, time
-from . import confirmNetworking
-#from . import user, sudo_password
 import ipcalc
 
 # Configure Linux networking at ease :)
