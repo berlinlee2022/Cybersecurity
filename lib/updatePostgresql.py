@@ -1,12 +1,12 @@
 # Imports modules
 # --------------
-from . import user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
+from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
 # Import module specific variables
 from . import thisTime
 from . import confirmUpdatePostgres
-from . import user, sudo_password
+#from . import user, sudo_password
 
-def updatePostgres():
+def updatePostgres(user, sudo_password):
 
     print(Fore.YELLOW + "\nUpdating PosgreSQL 15 port from port 5433 to port 5432...\n")
         

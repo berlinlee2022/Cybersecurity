@@ -1,13 +1,13 @@
 # --------------
 # Imports modules
 # --------------
-from . import user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re, time
+from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re, time
 from . import confirmNetworking
-from . import user, sudo_password
+#from . import user, sudo_password
 import ipcalc
 
 # Configure Linux networking at ease :)
-def networkConfig():
+def networkConfig(user, sudo_password, formatted_time):
         
     # Configuring a network interface
     nic = input(Fore.YELLOW + f'Enter a network interface iface name [e.g. eth0]: ')
@@ -16,10 +16,6 @@ def networkConfig():
     validate = re.match(regex, nic)
     #print(Fore.WHITE + f'validate.match: {validate.match}')
     #print(Fore.YELLOW + f'validate boolean: {validate}')
-        
-    # Store current time at the time of this module running
-    thisTime = time.localtime(time.time())
-    #print(Fore.WHITE + f'Time: {thisTime}')
 
     if validate:
         print(Fore.YELLOW + f'Succeeding in passing NIC name check, reasonable ? {validate} :)\nProceeding to configure NIC: {nic}\n')
@@ -120,7 +116,7 @@ def networkConfig():
                                     print(f'{doRouteAdd_err}')
                                     print(f'\n')
                                     print(f'\n')
-                                    print(Fore.RED + f'Failed to ip route add {networkAddressIP}/{cidr} via {gateway} dev {nic} at:\n{thisTime} :(')
+                                    print(Fore.RED + f'Failed to ip route add {networkAddressIP}/{cidr} via {gateway} dev {nic} at:\n{formatted_time} :(')
                                     print(f'\n')
                                     print(f'\n')
                                     print(Fore.RED + f'You may manually add a route by:\nsudo ip route add {networkAddressIP}/{cidr} via {gateway} dev {nic}')

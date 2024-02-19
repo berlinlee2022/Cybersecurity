@@ -1,12 +1,12 @@
 # --------------
 # Imports modules
 # --------------
-from . import newUser, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
+from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
 # Import module specific variables
-from . import thisTime, confirmUpgrade
-from . import user, sudo_password
+from . import confirmUpgrade
+#from . import user, sudo_password
 
-def cleanup():
+def cleanup(user, sudo_password):
 
     print(Fore.YELLOW + "########################")
     print(Fore.YELLOW + "### Cleaning up APT ###")
@@ -21,13 +21,13 @@ def cleanup():
         print(Fore.WHITE + f'{doCleanUp_out}')
         print(f'\n')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in Cleaning up APT at:\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in Cleaning up APT at:\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
         print(f'\n')
         print(Fore.WHITE + f'{doCleanUp_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to clean up APT\nSkipping at:\n{thisTime}')
+        print(Fore.RED + f'Failed to clean up APT\nSkipping at:\n{formatted_time}')
         print(f'\n')
         print(f'\n')

@@ -1,22 +1,21 @@
 # --------------
 # Imports modules
 # --------------
-from . import newUser, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
+from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
 # Import module specific variables
-from . import thisTime
-from . import user, sudo_password
+#from . import user, sudo_password
 from . import newUser, newPassword, confirmInstallTools
 
-def installTools():
+def installTools(user, sudo_password):
 
     # Default Tools
     print(Fore.YELLOW + "### Installing Default Tools ###")
 
     # Create directory 'tools'
     print(Fore.YELLOW + "***********************************")
-    print(Fore.YELLOW + f'Creating /home/{newUser}/')
+    print(Fore.YELLOW + f'Creating /home/{user}/')
     print(Fore.YELLOW + "***********************************")
-    createHome = f'echo {sudo_password} | sudo mkdir /home/{newUser}'
+    createHome = f'echo {sudo_password} | sudo mkdir /home/{user}'
     doCreateHome = subprocess.Popen(createHome, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doCreateHome_out, doCreateHome_err = doCreateHome.communicate()
     if doCreateHome.returncode == 0:
@@ -28,7 +27,7 @@ def installTools():
         print(f'\n')
         print(f'\n')
 
-    createDesktop = f'echo {sudo_password} | sudo mkdir /home/{newUser}/Desktop'
+    createDesktop = f'echo {sudo_password} | sudo mkdir /home/{user}/Desktop'
     doCreateDesktop = subprocess.Popen(createDesktop, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doCreateDesktop_out, doCreateDesktop_err = doCreateDesktop.communicate()
     if doCreateDesktop.returncode == 0:
@@ -83,14 +82,14 @@ def installTools():
     if doInstallPackage.returncode == 0:
         print(f'\n')
         print(Fore.WHITE + f'{doInstallPackage_out}')
-        print(Fore.YELLOW + f'\nInstallation of package managers has succeeded at\n{thisTime}!')
+        print(Fore.YELLOW + f'\nInstallation of package managers has succeeded at\n{formatted_time} !')
         print(f'\n')
         print(f'\n')
     else:
         print(f'\n')
         print(Fore.WHITE + f'{doInstallPackage_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to install of package managers has failed at\n{thisTime}:(')
+        print(Fore.RED + f'Failed to install of package managers has failed at\n{formatted_time} :(')
         print(f'\n')
         print(f'\n')
 
@@ -153,7 +152,7 @@ def installTools():
         #print(f'\n')
         #print(Fore.WHITE + f'{doChangeSn1perPermission_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in changing Sn1per ownership to {newUser} at\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in changing Sn1per ownership to {newUser} at\n{formatted_time}')
         print(f'\n')
         print(Fore.YELLOW + f'Please proceed to {path}Sn1per/install.sh for installation :)...')
         print(f'\n')
@@ -175,7 +174,7 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doDownloadSherlock_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Downloadation of Sherlock has succeeded at\n{thisTime}!\n\nProceeding to change Sherlock folder permissions at\n{thisTime}\n\n')
+        print(Fore.YELLOW + f'Downloadation of Sherlock has succeeded at\n{formatted_time}!\n\nProceeding to change Sherlock folder permissions at\n{formatted_time}\n\n')
         print(f'\n')
     else:
         print(f'\n')
@@ -191,7 +190,7 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doChangeSherlockPermission_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in changing Sherlock ownership to {newUser} at\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in changing Sherlock ownership to {newUser} at\n{formatted_time}')
         print(f'\n')
         print(Fore.YELLOW + f'Please proceed to {path}Sherlock/install.sh for installation :)')
         print(f'\n')
@@ -248,14 +247,14 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doInstallSeclist_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'\nInstallation of Seclist has succeeded at\n{thisTime}')
+        print(Fore.YELLOW + f'\nInstallation of Seclist has succeeded at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
         print(f'\n')
         print(f'{doInstallSeclist_err}')
         print(f'\n')
-        print(Fore.RED + f'\nFailed to install Seclist at\n{thisTime}')
+        print(Fore.RED + f'\nFailed to install Seclist at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
                 
@@ -270,7 +269,7 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doInstallEyewitness_out}')
         doInstallEyewitness
-        print(Fore.YELLOW + f'Succeeded in downloading EyeWitness at\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in downloading EyeWitness at\n{formatted_time}')
         print(f'\n')
     else:
         print(f'\n')
@@ -284,14 +283,14 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doChangeEyeWitnessPermission_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in changing permission for {path}EyeWitness at\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in changing permission for {path}EyeWitness at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
         print(f'\n')
         print(f'{doChangeEyeWitnessPermission_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to change permissions for {path}EyeWitness at\n{thisTime}\nSkipping...')
+        print(Fore.RED + f'Failed to change permissions for {path}EyeWitness at\n{formatted_time}\nSkipping...')
         print(f'\n')
         print(f'\n')
 
@@ -338,7 +337,7 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doInstallPowerline_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in downloading Powerline at {path} at\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in downloading Powerline at {path} at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
@@ -375,7 +374,7 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doInstallBeefXSS_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in installing Beef-XSS at\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in installing Beef-XSS at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
@@ -386,7 +385,7 @@ def installTools():
         print(f'\n')
         print(f'\n')
         
-    print(Fore.YELLOW + f'\nEnabling Beef-XSS binary at\n{thisTime}...')
+    print(Fore.YELLOW + f'\nEnabling Beef-XSS binary at\n{formatted_time}...')
     enableBeefXSS = f'echo {sudo_password} | sudo systemctl enable beef-xss'
     doEnableBeefXSS = subprocess.Popen(enableBeefXSS, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doEnableBeefXSS_out, doEnableBeefXSS_err = doEnableBeefXSS.communicate()
@@ -414,7 +413,7 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doStartBeefXSS_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in starting up Beef-XSS at\n{thisTime}\nProceeding to configure Beef-XSS!')
+        print(Fore.YELLOW + f'Succeeded in starting up Beef-XSS at\n{formatted_time}\nProceeding to configure Beef-XSS!')
         print(f'\n')
         print(f'\n')
     else:
@@ -437,7 +436,7 @@ def installTools():
     if doEditLogin.returncode == 0:
         print(f'\n')
         print(f'{doEditLogin_out}')
-        print(Fore.YELLOW + f'\nSucceeded in changing Beef-XSS Login credentials in /etc/beef-xss/config.yaml at\n{thisTime}')
+        print(Fore.YELLOW + f'\nSucceeded in changing Beef-XSS Login credentials in /etc/beef-xss/config.yaml at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
@@ -457,14 +456,14 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doCreateLogin_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in creating a directory for Beef-XSS Login credentials file at\n{thisTime}')
+        print(Fore.YELLOW + f'Succeeded in creating a directory for Beef-XSS Login credentials file at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
         print(f'\n')
         print(Fore.WHITE + f'{doCreateLogin_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to create a directory for Beef-XSS Login credentials file at\n{thisTime}')
+        print(Fore.RED + f'Failed to create a directory for Beef-XSS Login credentials file at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
         
@@ -476,7 +475,7 @@ def installTools():
         print(f'\n')
         print(f'{doPurgeLoginTxt_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'\nSucceeded in purging existing Login credentials file in {beefXSSPath} at\n{thisTime}\n')
+        print(Fore.YELLOW + f'\nSucceeded in purging existing Login credentials file in {beefXSSPath} at\n{formatted_time}\n')
         print(f'\n')
         print(f'\n')
     else:
@@ -487,7 +486,7 @@ def installTools():
         print(f'\n')
         print(f'\n')
         
-    print(Fore.YELLOW + f'\nCreating login.txt in {beefXSSPath}login.txt at\n{thisTime}\n')
+    print(Fore.YELLOW + f'\nCreating login.txt in {beefXSSPath}login.txt at\n{formatted_time}\n')
     createLoginTxt = f'echo {sudo_password} | sudo touch {beefXSSPath}login.txt; echo {sudo_password} | sudo chmod 400 {beefXSSPath}login.txt; echo {sudo_password} | sudo chown {newUser} {beefXSSPath}login.txt;'
     doCreateLoginTxt = subprocess.Popen(createLoginTxt, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doCreateLoginTxt_out, doCreateLoginTxt_err = doCreateLoginTxt.communicate()
@@ -495,7 +494,7 @@ def installTools():
     if doCreateLoginTxt.returncode == 0:
         print(f'\n')
         print(Fore.WHITE + f'{doCreateLoginTxt_out}')
-        print(Fore.YELLOW + f'\nSucceeded in creating Login credentials in {beefXSSPath}login.txt at\n{thisTime}')
+        print(Fore.YELLOW + f'\nSucceeded in creating Login credentials in {beefXSSPath}login.txt at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
@@ -516,14 +515,14 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doSaveLogin_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'\nSucceeded in saving current Beef-XSS Login credentials at\n{thisTime}\nPlease cat {beefXSSPath}login.txt for your login credentials :)')
+        print(Fore.YELLOW + f'\nSucceeded in saving current Beef-XSS Login credentials at\n{formatted_time}\nPlease cat {beefXSSPath}login.txt for your login credentials :)')
         print(f'\n')
         print(f'\n')
     else:
         print(f'\n')
         print(Fore.WHITE + f'{doSaveLogin_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to save current Beef-XSS Login credentials at\n{thisTime}\nSkipping...')
+        print(Fore.RED + f'Failed to save current Beef-XSS Login credentials at\n{formatted_time}\nSkipping...')
         print(f'\n')
         print(f'\n')
         
@@ -537,7 +536,7 @@ def installTools():
         print(f'\n')
         print(Fore.WHITE + f'{doRestartBeefXSS_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'\nSucceeded in restarting Beef-XSS at\n{thisTime}')
+        print(Fore.YELLOW + f'\nSucceeded in restarting Beef-XSS at\n{formatted_time}')
         print(f'\n')
         print(Fore.YELLOW + f'\n\nBeef-XSS is now accessible at http://127.0.0.1:3000/ui/authentication')
         print(f'\n')

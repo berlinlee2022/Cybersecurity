@@ -2,14 +2,13 @@
 # --------------
 # Imports modules
 # --------------
-from . import user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
+from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
 # Import module specific variables
-from . import thisTime
-from . import user, sudo_password
-from . import confirmUpgrade
+from . import formatted_time
+#from . import user, sudo_password
 
 # Update && upgrade Kali repository
-def upgrade():
+def upgrade(user, sudo_password):
 
     print(Fore.WHITE + f'******************************************')
     print(Fore.WHITE + f'*****Updating Kali Linux archive keys*****')
@@ -26,29 +25,38 @@ def upgrade():
     if doUpdateExpiredKeys.returncode == 0:
         print(Fore.WHITE + f'{doUpdateExpiredKeys_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'********Succeeded in performing Action 1. Updating expired keys\n{doUpdateExpiredKeys_out}\nat\n{thisTime}')
+        print(Fore.YELLOW + f'********Succeeded in performing Action 1. Updating expired keys\n{doUpdateExpiredKeys_out}\nat {formatted_time}')
         print(Fore.YELLOW + f'***************************************************************************************************************')
         print(f'\n')
         print(f'\n')
     else:
         print(Fore.WHITE + f'{doUpdateExpiredKeys_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to perform Action 1. Updating expried keys on Kali base-build image\nat\n{thisTime}\n\n')
+        print(Fore.RED + f'Failed to perform Action 1. Updating expried keys on Kali base-build image\nat\n{formatted_time}')
+        print(f'\n')
+        print(f'\n')
         
     # Update Kali.org Repo
     # Temporarily changing chmod for /etc/apt/sources.list
-    print(Fore.YELLOW + "Changing chmod for /etc/apt/sources.list to 777 temporarily...\n")
+    print(Fore.YELLOW + "Changing chmod for /etc/apt/sources.list to 777 temporarily...")
+    print(f'\n')
     chmod = f'echo {sudo_password} | sudo chmod 777 /etc/apt/sources.list'
     doChmod = subprocess.Popen(chmod, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChmod_out, doChmod_err = doChmod.communicate()
     if doChmod.returncode == 0:
+        print(f'\n')
         print(Fore.WHITE + f'{doChmod_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in temporarily chmod 777 /etc/apt/source.lists\n\n')
+        print(Fore.YELLOW + f'Succeeded in temporarily chmod 777 /etc/apt/source.lists')
+        print(f'\n')
+        print(f'\n')
     else:
+        print(f'\n')
         print(Fore.WHITE + f'{doChmod_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to temporarily chmod 777 /etc/apt/sources.list\n\n')
+        print(Fore.RED + f'Failed to temporarily chmod 777 /etc/apt/sources.list at {formatted_time}')
+        print(f'\n')
+        print(f'\n')
 
     print(Fore.YELLOW + f'Proceeding to configure HTTPS Kali Linux repo...\n')
     addDeb = f'echo {sudo_password} | sudo printf "deb https://http.kali.org/kali kali-rolling main non-free contrib\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib" > /etc/apt/sources.list'
@@ -56,16 +64,18 @@ def upgrade():
     doAddDeb_out, doAddDeb_err = doAddDeb.communicate()
 
     if doAddDeb.returncode == 0:
+        print(f'\n')
         print(Fore.WHITE + f'{doAddDeb_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'\nSucceeded in adding below:\ndeb https://http.kali.org/kali kali-rolling main non-free contrib\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib\nat:\n{thisTime}\n\n')
+        print(Fore.YELLOW + f'\nSucceeded in adding below:\ndeb https://http.kali.org/kali kali-rolling main non-free contrib\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib\nat:\n{formatted_time}')
         print(Fore.YELLOW + "*******************************************")
         print(f'\n')
         print(f'\n')
     else:
+        print(f'\n')
         print(Fore.RED + f'{doAddDeb_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to add following config to /etc/apt/sources.list\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib\nat:\n{thisTime}\n')
+        print(Fore.RED + f'Failed to add following config to /etc/apt/sources.list\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib\nat {formatted_time}')
         print(f'\n')
         print(f'\n')
         
@@ -78,10 +88,12 @@ def upgrade():
     printAptConfig_out, printAptConfig_err = printAptConfig.communicate()
     print(Fore.YELLOW + "*******************************************")
     if printAptConfig.returncode == 0:
+        print(f'\n')
         print(f'{printAptConfig_out}')
         print(f'\n')
         print(f'\n')
     else:
+        print(f'\n')
         print(f'{printAptConfig_err}')
         print(f'\n')
         print(f'\n')
@@ -96,9 +108,10 @@ def upgrade():
     doUpdateAndUpgrade_out, doUpdateAndUpgrade_err = doUpdateAndUpgrade.communicate()
             
     if doUpdateAndUpgrade.returncode == 0:
+        print(f'\n')
         print(Fore.WHITE + f'{doUpdateAndUpgrade_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'\nSucceeded in updating && upgrading APT at:\n{thisTime}')
+        print(Fore.YELLOW + f'\nSucceeded in updating && upgrading APT at:\n{formatted_time}')
         print(f'\n')
         print(f'\n')
         print(Fore.YELLOW + f'\nCurrent /etc/apt/sources.list is as following:')
@@ -106,9 +119,10 @@ def upgrade():
         print(f'\n')
                         
     else:
+        print(f'\n')
         print(Fore.WHITE + f'{doUpdateAndUpgrade_err}')
         print(f'\n')
-        print(Fore.RED + f'\nFailed to update && upgrade APT at:\n{thisTime}')
+        print(Fore.RED + f'Failed to update && upgrade APT at:\n{formatted_time}')
         print(f'\n')
         print(f'\n')
 
@@ -120,12 +134,14 @@ def upgrade():
     doChmodBack_out, doChmodBack_err = doChmodBack.communicate()
 
     if doChmodBack.returncode == 0:
+        print(f'\n')
         print(Fore.WHITE + f'{doChmodBack_out}')
         print(f'\n')
         print(Fore.YELLOW + f'Succeeded in changing chmod 644 for:\n/etc/apt/sources.list')
         print(f'\n')
         print(f'\n')            
     else:
+        print(f'\n')
         print(Fore.WHITE + f'{doChmodBack_err}')
         print(f'\n')
         print(Fore.RED + f'Failed to change chmod 644 for:\n/etc/apt/sources.list...\nSkipping...')
