@@ -1,12 +1,12 @@
 # --------------
 # Imports modules
 # --------------
-from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
+from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 # Import module specific variables
 from . import confirmUpgrade
 #from . import user, sudo_password
 
-def cleanup(user, sudo_password):
+def cleanup(user, sudo_password, formatted_time):
 
     print(Fore.YELLOW + "########################")
     print(Fore.YELLOW + "### Cleaning up APT ###")

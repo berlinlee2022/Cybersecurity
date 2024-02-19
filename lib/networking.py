@@ -1,7 +1,7 @@
 # --------------
 # Imports modules
 # --------------
-from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re, time
+from . import Fore, sys, os, Back, Style, getpass, subprocess, re, time
 from . import confirmNetworking
 #from . import user, sudo_password
 import ipcalc

@@ -8,11 +8,11 @@ import getpass
 import re
 import sys
 import time
-from lib import testCred, addUser, updatePostgresql, upgrade, installTools, cleanup
+from . import testCred, addUser, updatePostgresql, upgrade, installTools, cleanup
 
 # Get current local time as a struct time OBJ
-current_time = time.localtime()
+#current_time = time.localtime()
 
-formatted_time = time.strftime('%Y-%m-%d-%H:%M:%S', current_time)
+#formatted_time = time.strftime('%Y-%m-%d-%H:%M:%S', current_time)
 
 #print(f'Current time: {formatted_time}')

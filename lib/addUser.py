@@ -2,9 +2,7 @@
 # --------------
 # Imports modules
 # --------------
-from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
-# Import module specific variables
-from . import newUser, newPassword
+from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 
 def addUser(user, sudo_password, newUser, newPassword, formatted_time):
     # Adding a new privileged user

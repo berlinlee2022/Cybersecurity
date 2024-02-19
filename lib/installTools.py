@@ -1,12 +1,9 @@
 # --------------
 # Imports modules
 # --------------
-from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
-# Import module specific variables
-#from . import user, sudo_password
-from . import newUser, newPassword, confirmInstallTools
+from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 
-def installTools(user, sudo_password):
+def installTools(user, sudo_password, formatted_time):
 
     # Default Tools
     print(Fore.YELLOW + "### Installing Default Tools ###")
@@ -41,7 +38,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(f'\n')
             
-    createToolsDir = f'echo {sudo_password} | sudo mkdir /home/{newUser}/Desktop/tools'
+    createToolsDir = f'echo {sudo_password} | sudo mkdir /home/{user}/Desktop/tools'
     doCreateToolsDir = subprocess.Popen(createToolsDir, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doCreateToolsDir_out, doCreateToolsDir_err = doCreateToolsDir.communicate()
     if doCreateToolsDir.returncode == 0:
@@ -55,7 +52,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(f'\n')
 
-    change = f'echo {sudo_password} | sudo chmod 777 /home/{newUser}; echo {sudo_password} | sudo chmod 777 /home/{newUser}/Desktop; echo {sudo_password} | sudo chmod 777 /home/{newUser}/Desktop/tools; echo {sudo_password} | sudo chown {newUser} /home/{newUser}; echo {sudo_password} | sudo chown {newUser} /home/{newUser}/Desktop; echo {sudo_password} | sudo chown {newUser} /home/{newUser}/Desktop/tools;'
+    change = f'echo {sudo_password} | sudo chmod 777 /home/{user}; echo {sudo_password} | sudo chmod 777 /home/{user}/Desktop; echo {sudo_password} | sudo chmod 777 /home/{user}/Desktop/tools; echo {sudo_password} | sudo chown {user} /home/{user}; echo {sudo_password} | sudo chown {user} /home/{user}/Desktop; echo {sudo_password} | sudo chown {user} /home/{user}/Desktop/tools;'
     doChange = subprocess.Popen(change, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChange_out, doChange_err = doChange.communicate()
     if doChange.returncode == 0:
@@ -118,7 +115,7 @@ def installTools(user, sudo_password):
     print(f'\n')
     print(Fore.YELLOW + "### Installing recon tools...###")
     print(f'\n')
-    path = f'/home/{newUser}/Desktop/tools/'
+    path = f'/home/{user}/Desktop/tools/'
         
     # Downloading Sn1per
     print(Fore.YELLOW + "\nInstalling Sn1per...\n")
@@ -131,7 +128,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(Fore.YELLOW + f'1N3/Sn1per has been downloaded successfully!')
         print(f'\n')
-        print(f'Please cd ~/{newUser}/Desktop/tools/Sn1per => sudo bash Download.sh')
+        print(f'Please cd ~/{user}/Desktop/tools/Sn1per => sudo bash Download.sh')
         print(f'\n')
         print(f'Proceeding to change Sn1per folder permissions...')
         print(f'\n')
@@ -144,7 +141,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(f'\n')
                   
-    changeSn1perPermission = f'echo {sudo_password} | sudo chown {newUser} {path}S1nper; echo {sudo_password} | sudo chmod 777 {newUser} {path}Sn1per; echo {sudo_password} | sudo chown {newUser} {path}Sn1per/install.sh; echo {sudo_password} | sudo chmod 777 {newUser} {path}Sn1per/install.sh'
+    changeSn1perPermission = f'echo {sudo_password} | sudo chown {user} {path}S1nper; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per; echo {sudo_password} | sudo chown {user} {path}Sn1per/install.sh; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per/install.sh'
     doChangeSn1perPermission = subprocess.run(changeSn1perPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     #doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission_out.communicate()
 
@@ -152,7 +149,7 @@ def installTools(user, sudo_password):
         #print(f'\n')
         #print(Fore.WHITE + f'{doChangeSn1perPermission_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in changing Sn1per ownership to {newUser} at\n{formatted_time}')
+        print(Fore.YELLOW + f'Succeeded in changing Sn1per ownership to {user} at\n{formatted_time}')
         print(f'\n')
         print(Fore.YELLOW + f'Please proceed to {path}Sn1per/install.sh for installation :)...')
         print(f'\n')
@@ -160,7 +157,7 @@ def installTools(user, sudo_password):
     else:
         print(f'\n')
         #print(Fore.WHITE + f'{doChangeSn1perPermission_err}')
-        print(Fore.RED + f'Failed to change Sn1per ownership to {newUser}...\nSkipping...')
+        print(Fore.RED + f'Failed to change Sn1per ownership to {user}...\nSkipping...')
         print(f'\n')
         print(f'\n')                
             
@@ -182,7 +179,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(f'\n')
         
-    changeSherlockPermission = f'echo {sudo_password} | sudo chown {newUser} {path}sherlock; echo {sudo_password} | sudo chmod 777 {newUser} {path}sherlock; echo {sudo_password} | sudo chown {newUser} {path}sherlock;'
+    changeSherlockPermission = f'echo {sudo_password} | sudo chown {user} {path}sherlock; echo {sudo_password} | sudo chmod 777 {user} {path}sherlock; echo {sudo_password} | sudo chown {user} {path}sherlock;'
     doChangeSherlockPermission = subprocess.Popen(changeSherlockPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeSherlockPermission_out, doChangeSherlockPermission_err = doChangeSherlockPermission.communicate()
 
@@ -190,7 +187,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(Fore.WHITE + f'{doChangeSherlockPermission_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in changing Sherlock ownership to {newUser} at\n{formatted_time}')
+        print(Fore.YELLOW + f'Succeeded in changing Sherlock ownership to {user} at\n{formatted_time}')
         print(f'\n')
         print(Fore.YELLOW + f'Please proceed to {path}Sherlock/install.sh for installation :)')
         print(f'\n')
@@ -199,7 +196,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(Fore.WHITE + f'{doChangeSherlockPermission_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to change Sherlock ownership to {newUser}...\nSkipping...')
+        print(Fore.RED + f'Failed to change Sherlock ownership to {user}...\nSkipping...')
         print(f'\n')
         print(f'\n')
 
@@ -223,7 +220,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(f'\n')
         
-    changeRedHawkPermissions = f'echo {sudo_password} | sudo chown {newUser} {path}RED_HAWK; echo {sudo_password} | sudo chmod 777 {newUser} {path}RED_HAWK;'
+    changeRedHawkPermissions = f'echo {sudo_password} | sudo chown {user} {path}RED_HAWK; echo {sudo_password} | sudo chmod 777 {user} {path}RED_HAWK;'
     doChangeRedHawkPermissions = subprocess.Popen(changeRedHawkPermissions, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeRedHawkPermissions_out, doChangeRedHawkPermissions_err = doChangeRedHawkPermissions.communicate()
     if doChangeRedHawkPermissions.returncode == 0:
@@ -276,7 +273,7 @@ def installTools(user, sudo_password):
         print(Fore.RED + f'{doInstallEyewitness_err}')
         print(f'\n')
             
-    changeEyeWitnessPermission = f'echo {sudo_password} | sudo chown {newUser} {path}EyeWitness; echo {sudo_password} | sudo chmod 777 {path}EyeWitness;'
+    changeEyeWitnessPermission = f'echo {sudo_password} | sudo chown {user} {path}EyeWitness; echo {sudo_password} | sudo chmod 777 {path}EyeWitness;'
     doChangeEyeWitnessPermission = subprocess.Popen(changeEyeWitnessPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeEyeWitnessPermission_out, doChangeEyeWitnessPermission_err = doChangeEyeWitnessPermission.communicate()
     if doChangeEyeWitnessPermission.returncode == 0:
@@ -314,7 +311,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(f'\n')
         
-    changeEvilWinRm = f'echo {sudo_password} | sudo chown {newUser} {path}evil-winrm; echo {sudo_password} | sudo chmod 777 {path}evil-winrm;'
+    changeEvilWinRm = f'echo {sudo_password} | sudo chown {user} {path}evil-winrm; echo {sudo_password} | sudo chmod 777 {path}evil-winrm;'
     doChangeEvilWinRm = subprocess.Popen(changeEvilWinRm, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeEvilWinRm_out, doChangeEvilWinRm_err = doChangeEvilWinRm.communicate()
     if doChangeEvilWinRm.returncode == 0:
@@ -346,7 +343,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         print(f'\n')
         
-    changePowerLine = f'echo {sudo_password} | sudo chown {newUser} {path}powerline; echo {sudo_password} | sudo chmod 777 {path}powerline'
+    changePowerLine = f'echo {sudo_password} | sudo chown {user} {path}powerline; echo {sudo_password} | sudo chmod 777 {path}powerline'
     doChangePowerLine = subprocess.Popen(changePowerLine, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangePowerLine_out, doChangePowerLine_err = doChangePowerLine.communicate()
                     
@@ -364,8 +361,8 @@ def installTools(user, sudo_password):
     # Install BeefProject
     print(Fore.YELLOW + "### Installing Beef-XSS ###")
     print(Style.RESET_ALL)
-    #os.system('sudo -u {} sudo apt install beef-xss -y'.format(newUser))
-    beefXSSPath = f'/home/{newUser}/Desktop/tools/beef-xss/'
+    #os.system('sudo -u {} sudo apt install beef-xss -y'.format(user))
+    beefXSSPath = f'/home/{user}/Desktop/tools/beef-xss/'
     installBeefXSS = f'echo {sudo_password} | sudo apt install beef-xss -y'
     doInstallBeefXSS = subprocess.Popen(installBeefXSS, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doInstallBeefXSS_out, doInstallBeefXSS_err = doInstallBeefXSS.communicate()
@@ -428,8 +425,8 @@ def installTools(user, sudo_password):
     # Save it to var $beefDir                        
     print(Fore.YELLOW + f'Changing Beef-XSS login credentials...')
     print(f'\n')
-    #beefnewUser = input(Fore.YELLOW + "Enter new newUsername for Beef-XSS UI login: ")
-    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/newUser\: beef/newUser\: {newUser}/g\' /etc/beef-xss/config.yaml; echo {sudo_password} | sudo sed -i \'s/passwd\: beef/passwd\: {newPassword}/g\' /etc/beef-xss/config.yaml'
+    #beefuser = input(Fore.YELLOW + "Enter new username for Beef-XSS UI login: ")
+    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\: beef/user\: {user}/g\' /etc/beef-xss/config.yaml; echo {sudo_password} | sudo sed -i \'s/passwd\: beef/passwd\: {newPassword}/g\' /etc/beef-xss/config.yaml'
     doEditLogin=subprocess.Popen(editLoginCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doEditLogin_out, doEditLogin_err = doEditLogin.communicate()
                         
@@ -487,7 +484,7 @@ def installTools(user, sudo_password):
         print(f'\n')
         
     print(Fore.YELLOW + f'\nCreating login.txt in {beefXSSPath}login.txt at\n{formatted_time}\n')
-    createLoginTxt = f'echo {sudo_password} | sudo touch {beefXSSPath}login.txt; echo {sudo_password} | sudo chmod 400 {beefXSSPath}login.txt; echo {sudo_password} | sudo chown {newUser} {beefXSSPath}login.txt;'
+    createLoginTxt = f'echo {sudo_password} | sudo touch {beefXSSPath}login.txt; echo {sudo_password} | sudo chmod 400 {beefXSSPath}login.txt; echo {sudo_password} | sudo chown {user} {beefXSSPath}login.txt;'
     doCreateLoginTxt = subprocess.Popen(createLoginTxt, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doCreateLoginTxt_out, doCreateLoginTxt_err = doCreateLoginTxt.communicate()
                                 
@@ -507,7 +504,7 @@ def installTools(user, sudo_password):
     
     # Verifying Beef-XSS login credentials changes
     print(Fore.YELLOW + f'\nSaving the current Beef-XSS login credentials...\n')
-    saveLogin = f'newUser=$(echo {sudo_password} | sudo egrep "\s+{newUser}\:\s+(.*)" /etc/beef-xss/config.yaml); passwd=$(echo {sudo_password} | sudo egrep "\s+passwd\:\s+(.*)" /etc/beef-xss/config.yaml); echo {sudo_password} | sudo echo $newUser > {beefXSSPath}login.txt; echo {sudo_password} | sudo echo $passwd >> {beefXSSPath}login.txt;'
+    saveLogin = f'user=$(echo {sudo_password} | sudo egrep "\s+{user}\:\s+(.*)" /etc/beef-xss/config.yaml); passwd=$(echo {sudo_password} | sudo egrep "\s+passwd\:\s+(.*)" /etc/beef-xss/config.yaml); echo {sudo_password} | sudo echo $user > {beefXSSPath}login.txt; echo {sudo_password} | sudo echo $passwd >> {beefXSSPath}login.txt;'
     doSaveLogin = subprocess.Popen(saveLogin, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doSaveLogin_out, doSaveLogin_err = doSaveLogin.communicate()
                                     

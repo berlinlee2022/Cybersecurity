@@ -1,7 +1,6 @@
 # --------------
 # Imports modules
-from . import formatted_time, user, sudo_password, thisTime, distroName, initializeModules, Fore, sys, os, Back, Style, getpass, subprocess, re
-from . import confirmChangeKeyboardLayout
+from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 # --------------
 
 def changeKeyboardLayout(user, sudo_password, formatted_time):

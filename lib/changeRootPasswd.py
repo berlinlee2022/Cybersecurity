@@ -1,6 +1,6 @@
 # --------------
 # Imports modules
-from . import formatted_time, user, sudo_password, distroName, initializeModules, Fore, os, Back, Style, getpass, subprocess, re
+from . import Fore, os, Back, Style, getpass, subprocess, re
 
 def changeRootPasswd(user, sudo_password, formatted_time):
 
