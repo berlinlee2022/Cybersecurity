@@ -362,7 +362,7 @@ def installTools(user, sudo_password, formatted_time, newPassword):
     print(Fore.YELLOW + "### Installing Beef-XSS ###")
     print(Style.RESET_ALL)
     #os.system('sudo -u {} sudo apt install beef-xss -y'.format(user))
-    beefXSSPath = f'/home/{user}/Desktop/tools/beef-xss/'
+    #beefXSSPath = f'/home/{user}/Desktop/tools/beef-xss/'
     installBeefXSS = f'echo {sudo_password} | sudo apt install beef-xss -y'
     doInstallBeefXSS = subprocess.Popen(installBeefXSS, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doInstallBeefXSS_out, doInstallBeefXSS_err = doInstallBeefXSS.communicate()
@@ -425,15 +425,16 @@ def installTools(user, sudo_password, formatted_time, newPassword):
     # Save it to var $beefDir                        
     print(Fore.YELLOW + f'Changing Beef-XSS login credentials...')
     print(f'\n')
+    beefConf = f'/etc/beef-xss/config.yaml'
     #beefuser = input(Fore.YELLOW + "Enter new username for Beef-XSS UI login: ")
-    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\: beef/user\: {user}/g\' /etc/beef-xss/config.yaml; echo {sudo_password} | sudo sed -i \'s/passwd\: beef/passwd\: {newPassword}/g\' /etc/beef-xss/config.yaml'
+    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\: beef/user\: {user}/g\' {beefConf}; echo {sudo_password} | sudo sed -i \'s/passwd\: beef/passwd\: {newPassword}/g\' {beefConf}'
     doEditLogin=subprocess.Popen(editLoginCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doEditLogin_out, doEditLogin_err = doEditLogin.communicate()
                         
     if doEditLogin.returncode == 0:
         print(f'\n')
         print(f'{doEditLogin_out}')
-        print(Fore.YELLOW + f'\nSucceeded in changing Beef-XSS Login credentials in /etc/beef-xss/config.yaml at\n{formatted_time}')
+        print(Fore.YELLOW + f'\nSucceeded in changing Beef-XSS Login credentials in {beefConf} at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
@@ -442,10 +443,11 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         print(f'\n')
         print(f'\n')
         
-    ### Creating a directory to store current Beef-XSS Login credentials
-    print(Fore.YELLOW + f'Creating a directory:\n{beefXSSPath}\nTo store current Beef-XSS Login credentials')
+    ### Copy current Beef-XSS Login credentials to ./beef-login.txt
+    
+    print(Fore.YELLOW + f'Copying beef-xss config from {beefConf} to ./beef-login.txt')
     print(f'\n')
-    createLoginCommand = f'echo {sudo_password} | sudo mkdir {beefXSSPath}'
+    createLoginCommand = f'echo {sudo_password} | sudo cat {beefConf} > ./beef-login.txt'
     doCreateLogin=subprocess.Popen(createLoginCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doCreateLogin_out, doCreateLogin_err = doCreateLogin.communicate()
                             
@@ -453,76 +455,17 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         print(f'\n')
         print(Fore.WHITE + f'{doCreateLogin_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in creating a directory for Beef-XSS Login credentials file at\n{formatted_time}')
+        print(Fore.YELLOW + f'Succeeded in copying Beef-XSS config to ./beef-login.txt at {formatted_time}')
         print(f'\n')
         print(f'\n')
     else:
         print(f'\n')
         print(Fore.WHITE + f'{doCreateLogin_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to create a directory for Beef-XSS Login credentials file at\n{formatted_time}')
+        print(Fore.RED + f'Failed to copy Beef-XSS config to ./beef-login.txt at {formatted_time}')
         print(f'\n')
         print(f'\n')
-        
-    purgeLoginTxt = f'echo {sudo_password} | sudo rm -rf {beefXSSPath}login.txt;'
-    doPurgeLoginTxt=subprocess.Popen(purgeLoginTxt, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    doPurgeLoginTxt_out, doPurgeLoginTxt_err = doPurgeLoginTxt.communicate()
-        
-    if doPurgeLoginTxt.returncode == 0:
-        print(f'\n')
-        print(f'{doPurgeLoginTxt_out}')
-        print(f'\n')
-        print(Fore.YELLOW + f'\nSucceeded in purging existing Login credentials file in {beefXSSPath} at\n{formatted_time}\n')
-        print(f'\n')
-        print(f'\n')
-    else:
-        print(f'\n')
-        print(Fore.WHITE + f'{doPurgeLoginTxt_err}')
-        print(f'\n')
-        print(Fore.RED + f'\nFailed to purge existing Login credentials in {beefXSSPath}\nSkipping...')
-        print(f'\n')
-        print(f'\n')
-        
-    print(Fore.YELLOW + f'\nCreating login.txt in {beefXSSPath}login.txt at\n{formatted_time}\n')
-    createLoginTxt = f'echo {sudo_password} | sudo touch {beefXSSPath}login.txt; echo {sudo_password} | sudo chmod 400 {beefXSSPath}login.txt; echo {sudo_password} | sudo chown {user} {beefXSSPath}login.txt;'
-    doCreateLoginTxt = subprocess.Popen(createLoginTxt, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    doCreateLoginTxt_out, doCreateLoginTxt_err = doCreateLoginTxt.communicate()
-                                
-    if doCreateLoginTxt.returncode == 0:
-        print(f'\n')
-        print(Fore.WHITE + f'{doCreateLoginTxt_out}')
-        print(Fore.YELLOW + f'\nSucceeded in creating Login credentials in {beefXSSPath}login.txt at\n{formatted_time}')
-        print(f'\n')
-        print(f'\n')
-    else:
-        print(f'\n')
-        print(Fore.WHITE + f'{doCreateLoginTxt_err}')
-        print(f'\n')
-        print(Fore.RED + f'Failed to create Login credentials in {beefXSSPath}login.txt :(')
-        print(f'\n')
-        print(f'\n')
-    
-    # Verifying Beef-XSS login credentials changes
-    print(Fore.YELLOW + f'\nSaving the current Beef-XSS login credentials...\n')
-    saveLogin = f'user=$(echo {sudo_password} | sudo egrep "\s+{user}\:\s+(.*)" /etc/beef-xss/config.yaml); passwd=$(echo {sudo_password} | sudo egrep "\s+passwd\:\s+(.*)" /etc/beef-xss/config.yaml); echo {sudo_password} | sudo echo $user > {beefXSSPath}login.txt; echo {sudo_password} | sudo echo $passwd >> {beefXSSPath}login.txt;'
-    doSaveLogin = subprocess.Popen(saveLogin, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    doSaveLogin_out, doSaveLogin_err = doSaveLogin.communicate()
-                                    
-    if doSaveLogin.returncode == 0:
-        print(f'\n')
-        print(Fore.WHITE + f'{doSaveLogin_out}')
-        print(f'\n')
-        print(Fore.YELLOW + f'\nSucceeded in saving current Beef-XSS Login credentials at\n{formatted_time}\nPlease cat {beefXSSPath}login.txt for your login credentials :)')
-        print(f'\n')
-        print(f'\n')
-    else:
-        print(f'\n')
-        print(Fore.WHITE + f'{doSaveLogin_err}')
-        print(f'\n')
-        print(Fore.RED + f'Failed to save current Beef-XSS Login credentials at\n{formatted_time}\nSkipping...')
-        print(f'\n')
-        print(f'\n')
-        
+                        
     # Restart Beef-XSS
     print(Fore.YELLOW + f'\nRestarting Beef-XSS...\n')
     restartBeefXSS = f'echo {sudo_password} | sudo systemctl restart beef-xss'
@@ -541,7 +484,9 @@ def installTools(user, sudo_password, formatted_time, newPassword):
     else:
         print(f'\n')
         print(Fore.WHITE + f'{doRestartBeefXSS_err}')
-        print(Fore.RED + f'\nFailed to restart Beef-XSS...\nYou may restart Beef-XSS yourself then to login using your credentials in {beefXSSPath}login.txt\nat http://127.0.0.1:3000/ui/authentication\nSkipping...')
+        print(Fore.RED + f'\nFailed to restart Beef-XSS...\nYou may restart Beef-XSS yourself then to login using your credentials in ./beef-login.txt\nat http://127.0.0.1:3000/ui/authentication')
+        print(f'\n')
+        print(f'Skipping...')
         print(f'\n')
         print(f'\n')
                   
