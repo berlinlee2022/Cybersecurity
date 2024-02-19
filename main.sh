@@ -53,10 +53,18 @@ configureTools=$(sudo bash ./configure.sh);
 if [[ ${?} -eq 0 ]];
 then
     echo "Succeeded in configuring Kali Tools :D";
-    echo "Exiting...";
-    exit 0;
 else   
     echo "Failed to configure Kali Tools :(";
-    echo "Exiting with 1";
+fi
+
+runPython=$(sudo python3 ./main.py);
+if [[ ${?} -eq 0 ]];
+then
+    echo "Succeeded in running ./main.py :D";
+else
+    echo "Failed to run ./main.py :(";
+    echo "Exiting with 1...";
     exit 1;
 fi
+
+exit 0;
