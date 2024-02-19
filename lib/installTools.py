@@ -119,7 +119,7 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         
     # Downloading Sn1per
     print(Fore.YELLOW + "\nInstalling Sn1per...\n")
-    downloadSn1per = f'echo {sudo_password} | sudo git clone https://github.com/1N3/Sn1per.git;' 
+    downloadSn1per = f'cd {path} && echo {sudo_password} | sudo git clone https://github.com/1N3/Sn1per.git;' 
     doDownloadSn1per = subprocess.Popen(downloadSn1per, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doDownloadSn1per_out, doDownloadSn1per_err = doDownloadSn1per.communicate()
     if doDownloadSn1per.returncode == 0:
@@ -163,7 +163,7 @@ def installTools(user, sudo_password, formatted_time, newPassword):
             
     #Downloading Sherlock
     print(Fore.YELLOW + "\nDownloading Sherlock...\n")
-    downloadSherlock = f'echo {sudo_password} | sudo git clone https://github.com/sherlock-project/sherlock.git'
+    downloadSherlock = f'cd {path} && echo {sudo_password} | sudo git clone https://github.com/sherlock-project/sherlock.git'
     doDownloadSherlock = subprocess.Popen(downloadSherlock, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doDownloadSherlock_out, doDownloadSherlock_err = doDownloadSherlock.communicate()
 
@@ -204,7 +204,7 @@ def installTools(user, sudo_password, formatted_time, newPassword):
     print(f'\n')
     print(Fore.YELLOW + "Downloading RedHawk...")
     print(f'\n')
-    installRedHawk = f'echo {sudo_password} | sudo git clone https://github.com/Tuhinshubhra/RED_HAWK.git'
+    installRedHawk = f'cd {path} && echo {sudo_password} | sudo git clone https://github.com/Tuhinshubhra/RED_HAWK.git'
     doInstallRedHawk = subprocess.Popen(installRedHawk, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doInstallRedHawk_out, doInstallRedHawk_err = doInstallRedHawk.communicate()
 
@@ -294,7 +294,7 @@ def installTools(user, sudo_password, formatted_time, newPassword):
     # Install Evil-WinRM
     print(Fore.YELLOW + "### Installing Evil-WinRM ###")
     print(f'\n')
-    installEvilwinrm = f'echo {sudo_password} | sudo git clone https://github.com/Hackplayers/evil-winrm.git'
+    installEvilwinrm = f'cd {path} && echo {sudo_password} | sudo git clone https://github.com/Hackplayers/evil-winrm.git'
     doInstallEvilwinrm = subprocess.Popen(installEvilwinrm, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doInstallEvilwinrm_out, doInstallEvilwinrm_err = doInstallEvilwinrm.communicate()
 
