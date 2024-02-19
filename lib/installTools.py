@@ -247,6 +247,24 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         print(Fore.YELLOW + f'\nInstallation of Seclist has succeeded at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
+        
+        chmod777_secLists = f'echo {sudo_password} | sudo chmod 777 {path}SecLists'
+        do_chmod777_secLists = subprocess.Popen(chmod777_secLists, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        do_chmod777_secLists_out, do_chmod777_secLists_err = do_chmod777_secLists.communicate()
+        if do_chmod777_secLists.returncode == 0:
+            print(f'\n')
+            print(Fore.WHITE + f'{do_chmod777_secLists_out}')
+            print(f'\n')
+            print(Fore.YELLOW + f'Succeeded in chmod 777 for {path}SecLists')
+            print(f'\n')
+            print(f'\n')
+        else:
+            print(f'\n')
+            print(Fore.WHITE + f'{do_chmod777_secLists_err}')
+            print(f'\n')
+            print(Fore.RED + f'Failed to chmod 777 {path}SecLists at {formatted_time}')
+            print(f'\n')
+            print(f'\n')
     else:
         print(f'\n')
         print(f'{doInstallSeclist_err}')
@@ -254,6 +272,7 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         print(Fore.RED + f'\nFailed to install Seclist at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
+    
                 
     # Install EyeWitness
     print(Fore.YELLOW + "### Installing EyeWitness ###")
