@@ -426,6 +426,23 @@ def installTools(user, sudo_password, formatted_time, newPassword):
     print(Fore.YELLOW + f'Changing Beef-XSS login credentials...')
     print(f'\n')
     beefConf = f'/etc/beef-xss/config.yaml'
+    beefPermission = f'echo {sudo_password} | sudo chmod 777 {beefConf}'
+    do_beefPermission = subprocess.Popen(beefPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    do_beefPermission_out, do_beefPermission_err = do_beefPermission.communicate()
+    if do_beefPermission.returncode == 0:
+        print(f'\n')
+        print(Fore.WHITE + f'{do_beefPermission_out}')
+        print(f'\n')
+        print(Fore.YELLOW + f'Succeeded in chmod 777 {beefConf} at {formatted_time}')
+        print(f'\n')
+        print(f'\n')
+    else:
+        print(f'\n')
+        print(Fore.WHITE + f'{do_beefPermission_err}')
+        print(f'\n')
+        print(Fore.RED + f'Failed to chmod 777 {beefConf}')
+        print(f'\n')
+        print(f'\n')
     #beefuser = input(Fore.YELLOW + "Enter new username for Beef-XSS UI login: ")
     editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\: beef/user\: {user}/g\' {beefConf}; echo {sudo_password} | sudo sed -i \'s/passwd\: beef/passwd\: {newPassword}/g\' {beefConf}'
     doEditLogin=subprocess.Popen(editLoginCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)

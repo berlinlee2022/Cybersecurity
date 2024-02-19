@@ -109,7 +109,6 @@ if confirmAddUser.lower == 'y':
         # If newPassword == confirmNewPassword
         # Run addUser() callback from ./lib/addUser.py
         addUser.addUser(user, sudo_password, newUser, newPassword, formatted_time)
-        pass
         #return newUser, newPassword
     else:
         #match = False
@@ -123,7 +122,6 @@ else:
 if confirmUpdatePostgres.lower() == 'y':
     print(Fore.YELLOW + f'Will update postgreSQL 15 & 14 ports :)...\n')
     updatePostgres.updatePostgres(user, sudo_password, formatted_time)
-    pass    
 else:
     print(Fore.YELLOW + f'NOT gonna update postgreSQL 15 & 14 ports\nSkipping...\n')    
     
@@ -131,7 +129,6 @@ else:
 if confirmUpgrade.lower() == 'y':
     print(Fore.YELLOW + f'\n\nWill update Kali repository connection using HTTPS\nto allow apt update && apt upgrade\n\n')
     upgrade.upgrade(user, sudo_password, formatted_time)
-    pass
 else:
     print(Fore.YELLOW + f'\n\nWill NOT update Kali repository\n\nYou have to manually edit Kali repository config file\nhttp://kali.org => https://kali.org\nAND update the Kali keys from Kali archive\nin order to get apt install functions working...\n\n')
     #confirmUpgrade = 'n'
@@ -144,7 +141,6 @@ if confirmInstallTools.lower() == 'y':
     print(Fore.YELLOW + f'')
     newPassword = getpass.getpass('Enter newPassword for Tools: ')
     installTools.installTools(user, sudo_password, formatted_time, newPassword)
-    pass
 else:
     print(f'\n')
     print(Fore.YELLOW + f'NOT want to install open-source tools\nSkipping...')
