@@ -33,7 +33,7 @@ def updatePostgres(user, sudo_password, formatted_time):
     doUpdatePostgres14 = subprocess.Popen(updatePostgres14, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doUpdatePostgres14_out, doUpdatePostgres14_err = doUpdatePostgres14.communicate()
 
-    if doUpdatePostgres14 == 0:
+    if doUpdatePostgres14.returncode == 0:
         print(f'\n')
         print(Fore.WHITE + f'{doUpdatePostgres14_out}')
         print(f'\n')
