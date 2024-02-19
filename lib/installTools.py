@@ -5,6 +5,7 @@ from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 
 def installTools(user, sudo_password, formatted_time, newPassword):
 
+    binary_path = f'/usr/bin/'
     # Default Tools
     print(Fore.YELLOW + "### Installing Default Tools ###")
 
@@ -324,6 +325,44 @@ def installTools(user, sudo_password, formatted_time, newPassword):
         print(Fore.YELLOW + f'Succeeded in downloading Evil-WinRM at {path}\nProceeding to change permissions for {path}EyeWitness')
         print(f'\n')
         print(f'\n')
+        
+        gem_winrm = f'echo {sudo_password} | sudo gem install winrm'
+        install_gem_winrm = subprocess.Popen(gem_winrm, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        install_gem_winrm_out, install_gem_winrm_err = install_gem_winrm.communicate()
+        if install_gem_winrm.returncode == 0:
+            print(f'\n')
+            print(Fore.WHITE + f'{install_gem_winrm_out}')
+            print(f'\n')
+            print(Fore.YELLOW + f'Succeeded in installing Evil-WinRM dependency1: {gem_winrm} :D at {formatted_time}')
+            print(f'\n')
+            print(f'\n')
+        else:
+            print(f'\n')
+            print(Fore.WHITE + f'{install_gem_winrm_err}')
+            print(Fore.RED + f'Failed to install Evil-WinRM dependency1: {gem_winrm} at {formatted_time}')
+            print(f'\n')
+            print(Fore.RED + f'You must {gem_winrm} to get it running!!')
+            print(f'\n')
+            print(f'\n')
+        gem_winrm_fs = f'echo {sudo_password} | sudo gem install winrm-fs'
+        install_gem_winrm_fs = subprocess.Popen(gem_winrm_fs, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        install_gem_winrm_fs_out, install_gem_winrm_fs_err = install_gem_winrm_fs.communicate()
+        if install_gem_winrm_fs.returncode == 0:
+            print(f'\n')
+            print(Fore.WHITE + f'{install_gem_winrm_fs_out}')
+            print(f'\n')
+            print(Fore.YELLOW + f'Succeeded in installing Evil-WinRM dependency2: {gem_winrm_fs} at {formatted_time}')
+            print(f'\n')
+            print(f'\n')
+        else:
+            print(f'\n')
+            print(Fore.WHITE + f'{install_gem_winrm_fs_err}')
+            print(f'\n')
+            print(Fore.RED + f'Failed to install Evil-WinRM dependency2: {gem_winrm_fs} at {formatted_time}')
+            print(f'\n')
+            print(Fore.RED + f'You must {gem_winrm_fs} to get it running!!')
+            print(f'\n')
+            print(f'\n')
     else:
         print(f'\n')
         print(Fore.WHITE + f'{doInstallEvilwinrm_err}')
