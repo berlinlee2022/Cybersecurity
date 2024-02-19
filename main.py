@@ -140,7 +140,8 @@ if confirmInstallTools.lower() == 'y':
     print(f'\n')
     print(f'Package managers\n[e.g. Python3-pip, SNAP, GEM, NixNote2, Nautilus-dropbox, Keepassxc, DNF\n')
     print(Fore.YELLOW + f'')
-    installTools.installTools(user, sudo_password, formatted_time)
+    newPassword = getpass.getpass('Enter newPassword for Tools: ')
+    installTools.installTools(user, sudo_password, formatted_time, newPassword)
     pass
 else:
     print(f'\n')

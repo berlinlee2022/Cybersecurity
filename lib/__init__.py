@@ -1,5 +1,3 @@
-#from lib import addUser, updatePostgresql, upgrade, installTools, cleanup
-#from testCred import testCred
 import os
 import colorama
 from colorama import Fore, Back, Style
@@ -8,7 +6,7 @@ import getpass
 import re
 import sys
 import time
-from . import testCred, addUser, updatePostgresql, upgrade, installTools, cleanup
+from . import testCred, addUser, updatePostgres, upgrade, installTools, cleanup
 
 # Get current local time as a struct time OBJ
 #current_time = time.localtime()

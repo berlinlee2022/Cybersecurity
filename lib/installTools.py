@@ -3,7 +3,7 @@
 # --------------
 from . import Fore, sys, os, Back, Style, getpass, subprocess, re
 
-def installTools(user, sudo_password, formatted_time):
+def installTools(user, sudo_password, formatted_time, newPassword):
 
     # Default Tools
     print(Fore.YELLOW + "### Installing Default Tools ###")
