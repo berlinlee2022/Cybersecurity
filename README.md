@@ -16,6 +16,9 @@
 ## Much appreciated your education for Orchestration, advanced Network defenses, Infrastructure Security and Regular Expression🙇🏻‍♀️
 ## No Jimmy, no me🙇🏻‍♀️
 ##
+# Python is NOT a good tool for performing Bash scripting :D
+# as demonstrated by comparison here between the seamless performance of bug-free Bash scripts and the endless dead-end bugs in main.py using Python to replicate how Bash does its good jobs :D
+##
 ## This repo helps you unleash Kali Linux & install tools much faster via Python automation
 ## right after you configured a NIC for internet connection :D
 ##
