@@ -83,66 +83,62 @@ def getCredentials():
 user, sudo_password = getCredentials()
 
 directory1 = f'/home/{user}'
-mkdir1 = ['sudo', 'mkdir', directory1]
-do_mkdir1 = subprocess.Popen(
-    mkdir1, shell=False, 
+mkdir1 = f'echo {sudo_password} | sudo mkdir /home/{user}'
+do_mkdir1 = subprocess.run(
+    mkdir1, shell=True, 
     stdout=subprocess.PIPE, 
     stderr=subprocess.PIPE
     )
-do_mkdir1_out, do_mkdir1_err = do_mkdir1.communicate(input=f'{sudo_password}\n'.encode())
-    
+   
 if do_mkdir1.returncode == 0:
         
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir1_out}')
+    print(Fore.WHITE + f'{do_mkdir1.stdout}')
     print(f'\n')
         
 else:
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir1_err}')
+    print(Fore.WHITE + f'{do_mkdir1.stderr}')
     print(f'\n')
 
 directory2 = f'/home/{user}/Desktop'
-mkdir2 = ['sudo', 'mkdir', directory2]
-do_mkdir2 = subprocess.Popen(
-    mkdir2, 
-    shell=False, 
+mkdir2 = f'echo {sudo_password} | sudo mkdir /home/{user}'
+do_mkdir2 = subprocess.run(
+    mkdir2, shell=True, 
     stdout=subprocess.PIPE, 
     stderr=subprocess.PIPE
     )
-do_mkdir2_out, do_mkdir2_err = do_mkdir2.communicate(input=f'{sudo_password}\n'.encode())
-    
+   
 if do_mkdir2.returncode == 0:
         
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir2_out}')
+    print(Fore.WHITE + f'{do_mkdir2.stdout}')
     print(f'\n')
         
 else:
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir2_err}')
+    print(Fore.WHITE + f'{do_mkdir2.stderr}')
     print(f'\n')
         
 directory3 = f'/home/{user}/Desktop/tools'
-mkdir3 = ['sudo', 'mkdir', directory3]
-do_mkdir3 = subprocess.Popen(
-    mkdir3, 
-    shell=True, 
+mkdir3 = f'echo {sudo_password} | sudo mkdir /home/{user}'
+do_mkdir3 = subprocess.run(
+    mkdir3, shell=True, 
     stdout=subprocess.PIPE, 
     stderr=subprocess.PIPE
     )
-do_mkdir3_out, do_mkdir3_err = do_mkdir3.communicate(input=f'{sudo_password}\n'.encode())
-    
+   
 if do_mkdir3.returncode == 0:
         
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir3_out}')
+    print(Fore.WHITE + f'{do_mkdir3.stdout}')
     print(f'\n')
         
 else:
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir3_err}')
-    print(f'\n')    
+    print(Fore.WHITE + f'{do_mkdir3.stderr}')
+    print(f'\n')
+    
 
 def getTime():
     
