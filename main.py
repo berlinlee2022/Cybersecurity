@@ -13,11 +13,17 @@ from lib import addUser, updatePostgres, upgrade, installTools, cleanup
 
 # To confirm Linux distribution in /etc/os-release
 def get_distroName():
+    
     try:
+        
         with open('/etc/os-release', 'r') as os_release_file:
+            
             for line in os_release_file:
+                
                 if line.startswith('ID='):
+                    
                     distro = line.split('=')[1].strip().strip('"')
+                    
                     # Extact distribution name and remove quotes
                     return distro
                 
@@ -51,17 +57,21 @@ def getCredentials():
     try:
         
         print(Fore.WHITE + "\nProceeding...\n")
+        
         get_user = f'whoami'
         doGetUser = subprocess.Popen(get_user, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         doGetUser_out, doGetUser_err = doGetUser.communicate()
+        
         user = doGetUser_out.decode().strip()
         
         print(f'Current user: {user}')
         print(f'\n')
+        
         sudo_password = getpass.getpass(prompt='Enter sudo password: ')
         return user, sudo_password
 
     except Exception as e:
+        
         # Handle exceptions
         print(Fore.RED + f'Error retrieving root credentials from script user: {str(e)}')
         print(Fore.WHITE + f'{doGetUser_err}')
