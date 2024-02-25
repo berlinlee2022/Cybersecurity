@@ -12,13 +12,16 @@ def changeRootPasswd(user, sudo_password, formatted_time):
     doChangeRootPasswd_out, doChangeRootPasswd_err = doChangeRootPasswd.communicate()
 
     if doChangeRootPasswd.returncode == 0:
+        
         print(f'\n')
         print(doChangeRootPasswd_out)
         print(f'\n')
         print(Fore.YELLOW + f'Changing ROOT passwd was done! at {formatted_time}')
         print(f'\n')
         print(f'\n')
+        
     else:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doChangeRootPasswd_err}')
         print(f'\n')

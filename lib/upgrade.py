@@ -20,13 +20,16 @@ def upgrade(user, sudo_password, formatted_time):
     doUpdateExpiredKeys_out, doUpdateExpiredKeys_err = doUpdateExpiredKeys.communicate()
 
     if doUpdateExpiredKeys.returncode == 0:
+        
         print(Fore.WHITE + f'{doUpdateExpiredKeys_out}')
         print(f'\n')
         print(Fore.YELLOW + f'********Succeeded in performing Action 1. Updating expired keys\n{doUpdateExpiredKeys_out}\nat {formatted_time}')
         print(Fore.YELLOW + f'***************************************************************************************************************')
         print(f'\n')
         print(f'\n')
+        
     else:
+        
         print(Fore.WHITE + f'{doUpdateExpiredKeys_err}')
         print(f'\n')
         print(Fore.RED + f'Failed to perform Action 1. Updating expried keys on Kali base-build image\nat\n{formatted_time}')
@@ -37,17 +40,22 @@ def upgrade(user, sudo_password, formatted_time):
     # Temporarily changing chmod for /etc/apt/sources.list
     print(Fore.YELLOW + "Changing chmod for /etc/apt/sources.list to 777 temporarily...")
     print(f'\n')
+    
     chmod = f'echo {sudo_password} | sudo chmod 777 /etc/apt/sources.list'
     doChmod = subprocess.Popen(chmod, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChmod_out, doChmod_err = doChmod.communicate()
+    
     if doChmod.returncode == 0:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doChmod_out}')
         print(f'\n')
         print(Fore.YELLOW + f'Succeeded in temporarily chmod 777 /etc/apt/source.lists')
         print(f'\n')
         print(f'\n')
+        
     else:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doChmod_err}')
         print(f'\n')
@@ -56,11 +64,13 @@ def upgrade(user, sudo_password, formatted_time):
         print(f'\n')
 
     print(Fore.YELLOW + f'Proceeding to configure HTTPS Kali Linux repo...\n')
+    
     addDeb = f'echo {sudo_password} | sudo printf "deb https://http.kali.org/kali kali-rolling main non-free contrib\ndeb-src https://http.kali.org/kali kali-rolling main non-free contrib" > /etc/apt/sources.list'
     doAddDeb = subprocess.Popen(addDeb, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doAddDeb_out, doAddDeb_err = doAddDeb.communicate()
 
     if doAddDeb.returncode == 0:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doAddDeb_out}')
         print(f'\n')
@@ -68,7 +78,9 @@ def upgrade(user, sudo_password, formatted_time):
         print(Fore.YELLOW + "*******************************************")
         print(f'\n')
         print(f'\n')
+        
     else:
+        
         print(f'\n')
         print(Fore.RED + f'{doAddDeb_err}')
         print(f'\n')
@@ -84,12 +96,16 @@ def upgrade(user, sudo_password, formatted_time):
     printAptConfig = subprocess.Popen(aptConfig, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     printAptConfig_out, printAptConfig_err = printAptConfig.communicate()
     print(Fore.YELLOW + "*******************************************")
+    
     if printAptConfig.returncode == 0:
+        
         print(f'\n')
         print(f'{printAptConfig_out}')
         print(f'\n')
         print(f'\n')
+        
     else:
+        
         print(f'\n')
         print(f'{printAptConfig_err}')
         print(f'\n')
@@ -99,12 +115,14 @@ def upgrade(user, sudo_password, formatted_time):
     print(Fore.YELLOW + "##########################################################")
     print(Fore.YELLOW + "\n\n### Updating & Upgrading Advanced Package Manager ###\n")
     print(Fore.WHITE + "\nDoing apt update && apt upgrade now...\n")
+    
     #os.system('sudo apt update && sudo apt upgrade -yuf')
     updateAndUpgrade = f'echo {sudo_password} | sudo apt update && sudo apt upgrade -yuf'
     doUpdateAndUpgrade = subprocess.Popen(updateAndUpgrade, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doUpdateAndUpgrade_out, doUpdateAndUpgrade_err = doUpdateAndUpgrade.communicate()
             
     if doUpdateAndUpgrade.returncode == 0:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doUpdateAndUpgrade_out}')
         print(f'\n')
@@ -116,6 +134,7 @@ def upgrade(user, sudo_password, formatted_time):
         print(f'\n')
                         
     else:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doUpdateAndUpgrade_err}')
         print(f'\n')
@@ -126,18 +145,22 @@ def upgrade(user, sudo_password, formatted_time):
     # Changing chmod for /etc/apt/sources.list back to 644
     print(Fore.YELLOW + "\nChanging chmod for /etc/apt/sources.list back to 644...")
     print(f'\n')
+    
     chmodBack = f'echo {sudo_password} | sudo chmod 644 /etc/apt/sources.list'
     doChmodBack = subprocess.Popen(chmodBack, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChmodBack_out, doChmodBack_err = doChmodBack.communicate()
 
     if doChmodBack.returncode == 0:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doChmodBack_out}')
         print(f'\n')
         print(Fore.YELLOW + f'Succeeded in changing chmod 644 for:\n/etc/apt/sources.list')
         print(f'\n')
-        print(f'\n')            
+        print(f'\n')      
+              
     else:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doChmodBack_err}')
         print(f'\n')

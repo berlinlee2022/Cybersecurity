@@ -11,13 +11,16 @@ def updatePostgres(user, sudo_password, formatted_time):
     doUpdatePostgres15_out, doUpdatePostgres15_err = doUpdatePostgres15.communicate()
 
     if doUpdatePostgres15.returncode == 0:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doUpdatePostgres15_out}')
         print(f'\n')
         print(Fore.YELLOW + "Updating PosgreSQL 15 port from port 5433 to port 5432\nhas succeeded!")
         print(f'\n')
         print(f'\n')
+        
     else:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doUpdatePostgres15_err}')
         print(f'\n')
@@ -34,6 +37,7 @@ def updatePostgres(user, sudo_password, formatted_time):
     doUpdatePostgres14_out, doUpdatePostgres14_err = doUpdatePostgres14.communicate()
 
     if doUpdatePostgres14.returncode == 0:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doUpdatePostgres14_out}')
         print(f'\n')
@@ -42,6 +46,7 @@ def updatePostgres(user, sudo_password, formatted_time):
         print(f'\n')
                 
     else:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doUpdatePostgres14_err}')
         print(Fore.RED + "\nFailed to update PostgreSQL 14 port no. :(")
@@ -57,13 +62,16 @@ def updatePostgres(user, sudo_password, formatted_time):
     doRestartPostgres_out, doRestartPostgres_err = doRestartPostgres.communicate()
 
     if doRestartPostgres.returncode == 0:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doRestartPostgres_out}')
         print(f'\n')
         print(Fore.YELLOW + "Restarting PostgreSQL service has succeeded!")
         print(f'\n')
         print(f'\n')
+        
     else:
+        
         print(f'\n')
         print(Fore.WHITE + f'{doRestartPostgres_err}')
         print(f'\n')
