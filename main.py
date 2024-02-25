@@ -11,6 +11,51 @@ import time
 # Import all lib
 from lib import addUser, updatePostgres, upgrade, installTools, cleanup
 
+mkdir1 = f'echo {sudo_password} | sudo mkdir /home/{user}/'
+do_mkdir1 = subprocess.Popen(mkdir1, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+do_mkdir1_out, do_mkdir1_err = do_mkdir1.communicate()
+    
+if do_mkdir1.returncode == 0:
+        
+    print(f'\n')
+    print(Fore.WHITE + f'{do_mkdir1_out}')
+    print(f'\n')
+        
+else:
+    print(f'\n')
+    print(Fore.WHITE + f'{do_mkdir1_err}')
+    print(f'\n')
+        
+mkdir2 = f'echo {sudo_password} | sudo mkdir /home/{user}/Desktop/'
+do_mkdir2 = subprocess.Popen(mkdir2, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+do_mkdir2_out, do_mkdir2_err = do_mkdir2.communicate()
+    
+if do_mkdir2.returncode == 0:
+        
+    print(f'\n')
+    print(Fore.WHITE + f'{do_mkdir2_out}')
+    print(f'\n')
+        
+else:
+    print(f'\n')
+    print(Fore.WHITE + f'{do_mkdir2_err}')
+    print(f'\n')
+        
+mkdir3 = f'echo {sudo_password} | sudo mkdir /home/{user}/Desktop/tools'
+do_mkdir3 = subprocess.Popen(mkdir3, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+do_mkdir3_out, do_mkdir3_err = do_mkdir3.communicate()
+    
+if do_mkdir3.returncode == 0:
+        
+    print(f'\n')
+    print(Fore.WHITE + f'{do_mkdir3_out}')
+    print(f'\n')
+        
+else:
+    print(f'\n')
+    print(Fore.WHITE + f'{do_mkdir3_err}')
+    print(f'\n')    
+
 # To confirm Linux distribution in /etc/os-release
 def get_distroName():
     
@@ -165,53 +210,7 @@ else:
 # Whether installTools()
 if confirmInstallTools.lower() == 'y':
     
-    print(Fore.YELLOW + f'Will install Open-source tools for you ;)')
-    
-    mkdir1 = f'echo {sudo_password} | sudo mkdir /home/{user}/'
-    do_mkdir1 = subprocess.Popen(mkdir1, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    do_mkdir1_out, do_mkdir1_err = do_mkdir1.communicate()
-    
-    if do_mkdir1.returncode == 0:
-        
-        print(f'\n')
-        print(Fore.WHITE + f'{do_mkdir1_out}')
-        print(f'\n')
-        
-    else:
-        print(f'\n')
-        print(Fore.WHITE + f'{do_mkdir1_err}')
-        print(f'\n')
-        
-    mkdir2 = f'echo {sudo_password} | sudo mkdir /home/{user}/Desktop/'
-    do_mkdir2 = subprocess.Popen(mkdir2, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    do_mkdir2_out, do_mkdir2_err = do_mkdir2.communicate()
-    
-    if do_mkdir2.returncode == 0:
-        
-        print(f'\n')
-        print(Fore.WHITE + f'{do_mkdir2_out}')
-        print(f'\n')
-        
-    else:
-        print(f'\n')
-        print(Fore.WHITE + f'{do_mkdir2_err}')
-        print(f'\n')
-        
-    mkdir3 = f'echo {sudo_password} | sudo mkdir /home/{user}/Desktop/tools'
-    do_mkdir3 = subprocess.Popen(mkdir3, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    do_mkdir3_out, do_mkdir3_err = do_mkdir3.communicate()
-    
-    if do_mkdir3.returncode == 0:
-        
-        print(f'\n')
-        print(Fore.WHITE + f'{do_mkdir3_out}')
-        print(f'\n')
-        
-    else:
-        print(f'\n')
-        print(Fore.WHITE + f'{do_mkdir3_err}')
-        print(f'\n')    
-        
+    print(Fore.YELLOW + f'Will install Open-source tools for you ;)')    
     
     print(f'\n')
     print(f'Package managers\n[e.g. Python3-pip, SNAP, GEM, NixNote2, Nautilus-dropbox, Keepassxc, DNF\n')
