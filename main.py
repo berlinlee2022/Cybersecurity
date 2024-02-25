@@ -89,7 +89,6 @@ do_mkdir1 = subprocess.Popen(
     shell=True, 
     text=True
     )
-do_mkdir1.wait()
    
 if do_mkdir1.returncode == 0:
         
@@ -109,7 +108,6 @@ do_mkdir2 = subprocess.run(
     shell=True, 
     text=True
     )
-do_mkdir2.wait()
    
 if do_mkdir2.returncode == 0:
         
@@ -129,7 +127,6 @@ do_mkdir3 = subprocess.run(
     shell=True, 
     text=True
     )
-do_mkdir3.wait()
    
 if do_mkdir3.returncode == 0:
         
