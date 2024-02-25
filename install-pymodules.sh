@@ -45,7 +45,7 @@ for module in ${modules[@]};
 for module in ${modules[@]};
     do
         echo "Installing Python module: ${module}";
-        installMod=$(sudo apt install python3-${module});
+        installMod=$(sudo pip install ${module});
         if [[ ${?} -eq 0 ]];
         then
             echo "======================================";

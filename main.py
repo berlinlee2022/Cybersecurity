@@ -184,20 +184,31 @@ else:
 ## For customizing a NIC
 # confirmNetworking = input("Do you wanna configure a network interface? [Y/N]: ")
 # def passingNetworking():
+
 #     if confirmNetworking and confirmNetworking.lower() == 'y':
+
 #         print(Fore.YELLOW + f'\nWill set up a NIC for you :)\n')
 #         return confirmNetworking
+
 #     else:
+
 #         print(Fore.YELLOW + f'\nNot gonna set up a NIC\nSkipping...\n')
+
 # confirmNetworking = passingNetworking()
 
 ## For customizing Keyboard Layout
 # confirmChangeKeyboardLayout = input("Do you wanna change keyboard layout? [Y/N]: ")
+
 # def passingKeyboard():
+
 #     if confirmChangeKeyboardLayout and confirmChangeKeyboardLayout.lower() == 'y':
+#         
 #         print(Fore.YELLOW + f'\nWill change keyboard layout :)\n')
 #         return confirmChangeKeyboardLayout
+
 #     else:
+
 #         print(Fore.YELLOW + f'\nNot gonna change keyboard layout\n')
+
 # confirmChangeKeyboardLayout = passingKeyboard()
 
