@@ -83,7 +83,7 @@ def getCredentials():
 user, sudo_password = getCredentials()
 
 directory1 = f'/home/{user}'
-mkdir1 = ['sudo', '-S', 'mkdir', directory1]
+mkdir1 = ['sudo', 'mkdir', directory1]
 do_mkdir1 = subprocess.Popen(
     mkdir1, shell=False, 
     stdout=subprocess.PIPE, 
@@ -103,7 +103,7 @@ else:
     print(f'\n')
 
 directory2 = f'/home/{user}/Desktop'
-mkdir2 = ['sudo', '-S', 'mkdir', directory2]
+mkdir2 = ['sudo', 'mkdir', directory2]
 do_mkdir2 = subprocess.Popen(
     mkdir2, 
     shell=False, 
@@ -124,7 +124,7 @@ else:
     print(f'\n')
         
 directory3 = f'/home/{user}/Desktop/tools'
-mkdir3 = ['sudo', '-S', 'mkdir', directory3]
+mkdir3 = ['sudo', 'mkdir', directory3]
 do_mkdir3 = subprocess.Popen(
     mkdir3, 
     shell=True, 
