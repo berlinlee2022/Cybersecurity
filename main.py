@@ -116,7 +116,7 @@ if confirmAddUser.lower() == 'y':
 
     if newPassword == confirmNewPassword:
         
-        print(Fore.YELLOW + "Will add a new privileged user for you :)")
+        print(Fore.YELLOW + f'Will add a new privileged user {newUser}\nnewPassword: {newPassword}\nfor you as {user} :)\nStarting at {formatted_time}')
         # If newPassword == confirmNewPassword
         # Run addUser() callback from ./lib/addUser.py
         addUser.addUser(user, sudo_password, newUser, newPassword, formatted_time)
