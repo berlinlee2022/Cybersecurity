@@ -13,7 +13,7 @@ def addUser(user, sudo_password, newUser, newPassword, formatted_time):
         
     if doAddPrivUser.returncode == 0:
         
-        print(f'{doAddPrivUser_out}')
+        #print(f'{doAddPrivUser_out}')
         print(f'\n')
         print(Fore.YELLOW + f'Succeeded in add new Priviledged User at {formatted_time}:D')            
         print(f'\n')
@@ -24,7 +24,8 @@ def addUser(user, sudo_password, newUser, newPassword, formatted_time):
         doChangePassword_out, doChangePassword_err = doChangePassword.communicate()
         
         if doChangePassword.returncode == 0:
-            print(Fore.WHITE + f'{doChangePassword_out}')
+            
+            #print(Fore.WHITE + f'{doChangePassword_out}')
             print(f'\n')
             print(Fore.YELLOW + f'Succeeded in creating the password: {newPassword} for {newUser}\nat {formatted_time}')
             print(f'\n')
@@ -37,7 +38,7 @@ def addUser(user, sudo_password, newUser, newPassword, formatted_time):
             
             if doUsermod.returncode == 0:
                 
-                print(Fore.WHITE + f'{doUsermod_out}')
+                #print(Fore.WHITE + f'{doUsermod_out}')
                 print(f'\n')
                 print(Fore.YELLOW + f'Succeeed in adding {newUser} to sudoers group :D\nOperation was done at {formatted_time}')
                 print(f'\n')
@@ -55,7 +56,7 @@ def addUser(user, sudo_password, newUser, newPassword, formatted_time):
                 
                 if doAddBash.returncode == 0:
                     
-                    print(Fore.WHITE + f'{doAddBash_out}')
+                    #print(Fore.WHITE + f'{doAddBash_out}')
                     print(f'\n')
                     print(Fore.YELLOW + f'Succeeded in adding {newUser} to Bash group\n\n')
                     # Adding 'user' to /ect/sudoers config
@@ -67,7 +68,7 @@ def addUser(user, sudo_password, newUser, newPassword, formatted_time):
                     if doAddSudoer.returncode == 0:
                         
                         print(f'\n')
-                        print(Fore.WHITE + f'{doAddSudoer_out}')
+                        #print(Fore.WHITE + f'{doAddSudoer_out}')
                         print(f'\n')
                         print(Fore.YELLOW + f'Succeeded in adding {newUser} to /etc/sudoer config at {formatted_time}')                        
                         print(f'\n')
@@ -76,7 +77,7 @@ def addUser(user, sudo_password, newUser, newPassword, formatted_time):
                     else:
                         
                         print(f'\n')
-                        print(Fore.WHITE + f'{doAddSudoer_err}')
+                        #print(Fore.WHITE + f'{doAddSudoer_err}')
                         print(f'\n')
                         print(Fore.RED + f'Failed to add {newUser} to /etc/sudoers config at {formatted_time}')
                         print(f'\n')
@@ -85,28 +86,28 @@ def addUser(user, sudo_password, newUser, newPassword, formatted_time):
                 else:
                     
                     print(f'\n')
-                    print(Fore.WHITE + f'{doAddBash_err}')
+                    #print(Fore.WHITE + f'{doAddBash_err}')
                     print(f'\n')
                     print(Fore.RED + f'Failed to add {newUser} to Bash group at {formatted_time}')
             
             else:
                 
                 print(f'\n')
-                print(Fore.WHITE + f'{doUsermod_err}')
+                #print(Fore.WHITE + f'{doUsermod_err}')
                 print(f'\n')
                 print(Fore.RED + f'Failed to add {newUser} to sudoers group at {formatted_time}')
         
         else:
             
             print(f'\n')
-            print(Fore.WHITE + f'{doChangePassword_err}')
+            #print(Fore.WHITE + f'{doChangePassword_err}')
             print(f'\n')
             print(Fore.RED + f'Failed to create the password for {newUser} at {formatted_time}')
     
     else:
         
         print(f'\n')
-        print(f'{doAddPrivUser_err}')
+        #print(f'{doAddPrivUser_err}')
         print(f'\n')
         print(f'\n')
 
