@@ -87,10 +87,10 @@ def getCredentials():
         
         # Check if any special characters are in the password
         if any(char in special_characters for char in sudo_password):
-            print(f'sudo_password contains special characters\nThis script does NOT support sudo_password with special characters\nExiting...\n')
+            print(Fore.RED + f'This Script does NOT support sudo_password with Special Characters OR Symbols :(\n\nExiting...\n')
             sys.exit()
         else:
-            print(f'sudo_password is accepted ;)\nProceeding...\n')
+            print(Fore.WHITE + f'sudo_password is accepted ;)\nProceeding...\n')
         
         return user, sudo_password
 
@@ -119,13 +119,11 @@ do_mkdir1 = subprocess.run(
 if do_mkdir1.returncode == 0:
         
     print(f'\n')
-    print(Fore.WHITE + f'Succeeded in {mkdir1}')
     print(f'{do_mkdir1.stdout}')
     print(f'\n')
         
 else:
     print(f'\n')
-    print(Fore.WHITE + f'Failed {mkdir1}')
     print(f'{do_mkdir1.stderr}')
     print(f'\n')
 
@@ -142,13 +140,12 @@ do_mkdir2 = subprocess.run(
 if do_mkdir2.returncode == 0:
         
     print(f'\n')
-    print(Fore.WHITE + f'Succeeded in {mkdir2}')
-    print(f'{do_mkdir2.stdout}')
+    print(Fore.WHITE + f'{do_mkdir2.stdout}')
     print(f'\n')
         
 else:
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir2.stderr}')
+    print(Fore.RED + f'{do_mkdir2.stderr}')
     print(f'\n')
         
 directory3 = f'/home/{user}/Desktop/tools'
@@ -169,7 +166,7 @@ if do_mkdir3.returncode == 0:
         
 else:
     print(f'\n')
-    print(Fore.WHITE + f'{do_mkdir3.stderr}')
+    print(Fore.RED + f'{do_mkdir3.stderr}')
     print(f'\n')
     
 
@@ -222,15 +219,6 @@ else:
 # To update PostgreSQL 15 && 14 TCP ports (5432 && 5433)
 confirmUpdatePostgres = input("Do you wanna update PostgreSQL14 & 15 ports 5432? [Y/N]: ")
    
-    
-# To update http.kali.org => https.kali.org
-confirmUpgrade = input("Do you wanna upgrade apt & kali repo? [Y/N]: ").strip()    
-
-## For installing open-source tools
-confirmInstallTools = input("Do you wanna install tools? [Y/N]: ")
-
-
-    
 # Whether updatePostgresql()
 if confirmUpdatePostgres.lower() == 'y':
     
@@ -240,6 +228,17 @@ if confirmUpdatePostgres.lower() == 'y':
 else:
     
     print(Fore.YELLOW + f'NOT gonna update postgreSQL 15 & 14 ports\nSkipping...\n')    
+
+
+
+# To update http.kali.org => https.kali.org
+confirmUpgrade = input("Do you wanna upgrade apt & kali repo? [Y/N]: ").strip()    
+
+
+
+## For installing open-source tools
+confirmInstallTools = input("Do you wanna install tools? [Y/N]: ")
+
     
 # Whether upgrade()
 if confirmUpgrade.lower() == 'y':
