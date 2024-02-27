@@ -174,7 +174,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
                   
     changeSn1perPermission = f'echo {sudo_password} | sudo chown {user} {path}S1nper; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per; echo {sudo_password} | sudo chown {user} {path}Sn1per/install.sh; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per/install.sh'
     doChangeSn1perPermission = subprocess.Popen(changeSn1perPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission_out.communicate()
+    doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission.communicate()
 
     if doChangeSn1perPermission.returncode == 0:
         
