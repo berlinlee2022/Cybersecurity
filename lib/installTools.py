@@ -173,13 +173,13 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
                   
     changeSn1perPermission = f'echo {sudo_password} | sudo chown {user} {path}S1nper; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per; echo {sudo_password} | sudo chown {user} {path}Sn1per/install.sh; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per/install.sh'
-    doChangeSn1perPermission = subprocess.run(changeSn1perPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission_out.communicate()
+    doChangeSn1perPermission = subprocess.Popen(changeSn1perPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission_out.communicate()
 
     if doChangeSn1perPermission.returncode == 0:
         
         #print(f'\n')
-        #print(Fore.WHITE + f'{doChangeSn1perPermission_out}')
+        print(Fore.WHITE + f'{doChangeSn1perPermission_out}')
         print(f'\n')
         print(Fore.YELLOW + f'Succeeded in changing Sn1per ownership to {user} at\n{formatted_time}')
         print(f'\n')
@@ -190,7 +190,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
     else:
         
         print(f'\n')
-        #print(Fore.WHITE + f'{doChangeSn1perPermission_err}')
+        print(Fore.WHITE + f'{doChangeSn1perPermission_err}')
         print(Fore.RED + f'Failed to change Sn1per ownership to {user}...\nSkipping...')
         print(f'\n')
         print(f'\n')                

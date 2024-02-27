@@ -12,7 +12,7 @@ def changeKeyboardLayout(user, sudo_password, formatted_time):
     #keyboardUser = input(Fore.WHITE + "Please enter who you're changing keyboard layout for [username]: ")
 
     changeKeyboard = f'echo {sudo_password} | sudo -u {user} dpkg-reconfigure keyboard-configuration'
-    doChangeKeyboard = subprocess.Popen(changeKeyboard, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    doChangeKeyboard = subprocess.Popen(changeKeyboard, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     doChangeKeyboard_out, doChangeKeyboard_err = doChangeKeyboard.communicate()
 
     if doChangeKeyboard.returncode == 0:

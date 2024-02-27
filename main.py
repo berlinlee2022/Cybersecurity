@@ -8,6 +8,8 @@ import sys
 import time
 #import ipcalc
 
+import string
+
 # Import all lib
 from lib import addUser, updatePostgres, upgrade, installTools, cleanup
 
@@ -76,11 +78,19 @@ def getCredentials():
             #user = do_get_user.stderr
             sys.exit()
 
-        #user = doGetUser_out.decode().strip()
-        print(f'Current user: {user}')
-        print(f'\n')
+
         
         sudo_password = getpass.getpass(prompt='Enter sudo password: ')
+        
+        # Define special characters
+        special_characters = string.punctuation
+        
+        # Check if any special characters are in the password
+        if any(char in special_characters for char in sudo_password):
+            print(f'sudo_password contains special characters\nThis script does NOT support sudo_password with special characters\nExiting...\n')
+            sys.exit()
+        else:
+            print(f'sudo_password is accepted ;)\nProceeding...\n')
         
         return user, sudo_password
 
