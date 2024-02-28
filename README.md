@@ -26,7 +26,7 @@
 ## git clone https://github.com/phoenixyork166/Kali-Rebuild-Auto.git
 ## 
 ## cd ./Kali-Rebuild-Auto && sudo python3 ./main.py
-## If you Kali Linux doesn't support this main.py, 
+## If your Kali Linux doesn't support this main.py, 
 ## Run the Shell Scripts instead
 ## bash./Kali-Rebuild-Auto/upgrade.sh;
 ## bash ./Kali-Rebuild-Auto/install-tools.sh;
