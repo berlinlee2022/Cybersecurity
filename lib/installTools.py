@@ -608,7 +608,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         
     #beefuser = input(Fore.YELLOW + "Enter new username for Beef-XSS UI login: ")
-    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\: "beef"/user\: {newUser}/g\' {beefConf}; echo {sudo_password} | sudo sed -i \'s/passwd\: "beef"/passwd\: {newPassword}/g\' {beefConf}'
+    editLoginCommand = f'echo {sudo_password} | sudo sed -i \'s/user\s*\: "beef"/user\: {newUser}/g\' {beefConf}; echo {sudo_password} | sudo sed -i \'s/passwd\s*\:\s*"beef"/passwd\: {newPassword}/g\' {beefConf}'
     doEditLogin=subprocess.Popen(editLoginCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     doEditLogin_out, doEditLogin_err = doEditLogin.communicate()
                         
