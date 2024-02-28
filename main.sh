@@ -12,6 +12,8 @@ fi
 
 echo "chmod 777 for ./upgrade.sh ./install-tools.sh ./install-pymodules.sh ./configure.sh";
 
+sudo chmod 777 ./*.*;
+sudo chmod 777 ./lib/*.*;
 sudo chmod777 ./upgrade.sh;
 sudo chmod777 ./install-tools.sh;
 sudo chmod 777 ./install-pymodules.sh;

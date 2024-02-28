@@ -172,7 +172,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(f'\n')
                   
-    changeSn1perPermission = f'echo {sudo_password} | sudo chown {user} {path}S1nper; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per; echo {sudo_password} | sudo chown {user} {path}Sn1per/install.sh; echo {sudo_password} | sudo chmod 777 {user} {path}Sn1per/install.sh'
+    changeSn1perPermission = f'echo {sudo_password} | sudo chown {user} ./S1nper; echo {sudo_password} | sudo chmod 777 {user} ./Sn1per; echo {sudo_password} | sudo chown {user} ./Sn1per/install.sh; echo {sudo_password} | sudo chmod 777 {user} ./Sn1per/install.sh'
     doChangeSn1perPermission = subprocess.Popen(changeSn1perPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     doChangeSn1perPermission_out, doChangeSn1perPermission_err = doChangeSn1perPermission.communicate()
 
@@ -183,7 +183,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(Fore.YELLOW + f'Succeeded in changing Sn1per ownership to {user} at\n{formatted_time}')
         print(f'\n')
-        print(Fore.YELLOW + f'Please proceed to {path}Sn1per/install.sh for installation :)...')
+        print(Fore.YELLOW + f'Please proceed to ./Sn1per/install.sh for installation :)...')
         print(f'\n')
         print(f'\n')
         
@@ -207,7 +207,9 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(Fore.WHITE + f'{doDownloadSherlock_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Downloadation of Sherlock has succeeded at\n{formatted_time}!\n\nProceeding to change Sherlock folder permissions at\n{formatted_time}\n\n')
+        print(Fore.YELLOW + f'Succeeded in downloadation of Sherlock has succeeded at\n{formatted_time}!\n\nProceeding to change Sherlock folder permissions at\n{formatted_time}\n\n')
+        print(f'\n')
+        print(Fore.YELLOW + f'Please proceed to ./sherlock for installation AND(OR) configuration...')
         print(f'\n')
         
     else:
@@ -217,7 +219,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(f'\n')
         
-    changeSherlockPermission = f'echo {sudo_password} | sudo chown {user} {path}sherlock; echo {sudo_password} | sudo chmod 777 {user} {path}sherlock; echo {sudo_password} | sudo chown {user} {path}sherlock;'
+    changeSherlockPermission = f'echo {sudo_password} | sudo chown {user} ./sherlock; echo {sudo_password} | sudo chmod 777 {user} ./sherlock; echo {sudo_password} | sudo chown {user} ./sherlock;'
     doChangeSherlockPermission = subprocess.Popen(changeSherlockPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeSherlockPermission_out, doChangeSherlockPermission_err = doChangeSherlockPermission.communicate()
 
@@ -228,7 +230,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(Fore.YELLOW + f'Succeeded in changing Sherlock ownership to {user} at\n{formatted_time}')
         print(f'\n')
-        print(Fore.YELLOW + f'Please proceed to {path}Sherlock/install.sh for installation :)')
+        print(Fore.YELLOW + f'Please proceed to ./sherlock/install.sh for installation :)')
         print(f'\n')
         print(f'\n')
         
@@ -254,7 +256,9 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         
         print(f'\n')
         print(Fore.WHITE + f'{doInstallRedHawk_out}')
-        print(Fore.YELLOW + "Installation of RedHawk has succeeded!\nProceeding to change permissions...")
+        print(Fore.YELLOW + "Succeeded in downloading RedHawk has succeeded!\nProceeding to change permissions...")
+        print(f'\n')
+        print(Fore.YELLOW + f'Please proceed to ./RED_HAWK for installation AND(OR) configuration...')
         print(f'\n')
         
     else:
@@ -265,7 +269,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(f'\n')
         
-    changeRedHawkPermissions = f'echo {sudo_password} | sudo chown {user} {path}RED_HAWK; echo {sudo_password} | sudo chmod 777 {user} {path}RED_HAWK;'
+    changeRedHawkPermissions = f'echo {sudo_password} | sudo chown {user} ./RED_HAWK; echo {sudo_password} | sudo chmod 777 {user} ./RED_HAWK;'
     doChangeRedHawkPermissions = subprocess.Popen(changeRedHawkPermissions, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeRedHawkPermissions_out, doChangeRedHawkPermissions_err = doChangeRedHawkPermissions.communicate()
     
@@ -296,11 +300,11 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(Fore.WHITE + f'{doInstallSeclist_out}')
         print(f'\n')
         
-        print(Fore.YELLOW + f'\nInstallation of Seclist has succeeded at\n{formatted_time}')
+        print(Fore.YELLOW + f'\nSucceeded in download Seclists at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
         
-        chmod777_secLists = f'echo {sudo_password} | sudo chmod 777 {path}SecLists'
+        chmod777_secLists = f'echo {sudo_password} | sudo chmod 777 ./SecLists'
         do_chmod777_secLists = subprocess.Popen(chmod777_secLists, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         do_chmod777_secLists_out, do_chmod777_secLists_err = do_chmod777_secLists.communicate()
         
@@ -309,7 +313,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
             print(f'\n')
             print(Fore.WHITE + f'{do_chmod777_secLists_out}')
             print(f'\n')
-            print(Fore.YELLOW + f'Succeeded in chmod 777 for {path}SecLists')
+            print(Fore.YELLOW + f'Succeeded in chmod 777 for ./SecLists')
             print(f'\n')
             print(f'\n')
             
@@ -318,7 +322,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
             print(f'\n')
             print(Fore.WHITE + f'{do_chmod777_secLists_err}')
             print(f'\n')
-            print(Fore.RED + f'Failed to chmod 777 {path}SecLists at {formatted_time}')
+            print(Fore.RED + f'Failed to chmod 777 ./SecLists at {formatted_time}')
             print(f'\n')
             print(f'\n')
             
@@ -354,7 +358,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(Fore.RED + f'{doInstallEyewitness_err}')
         print(f'\n')
             
-    changeEyeWitnessPermission = f'echo {sudo_password} | sudo chown {user} {path}EyeWitness; echo {sudo_password} | sudo chmod 777 {path}EyeWitness;'
+    changeEyeWitnessPermission = f'echo {sudo_password} | sudo chown {user} ./EyeWitness; echo {sudo_password} | sudo chmod 777 ./EyeWitness;'
     doChangeEyeWitnessPermission = subprocess.Popen(changeEyeWitnessPermission, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeEyeWitnessPermission_out, doChangeEyeWitnessPermission_err = doChangeEyeWitnessPermission.communicate()
     
@@ -363,7 +367,9 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(Fore.WHITE + f'{doChangeEyeWitnessPermission_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in changing permission for {path}EyeWitness at\n{formatted_time}')
+        print(Fore.YELLOW + f'Succeeded in changing permission for ./EyeWitness at\n{formatted_time}')
+        print(f'\n')
+        print(Fore.YELLOW + f'Please proceed to ./evil-winrm for installation AND(OR) configuration...')
         print(f'\n')
         print(f'\n')
         
@@ -372,7 +378,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(f'{doChangeEyeWitnessPermission_err}')
         print(f'\n')
-        print(Fore.RED + f'Failed to change permissions for {path}EyeWitness at\n{formatted_time}\nSkipping...')
+        print(Fore.RED + f'Failed to change permissions for ./EyeWitness at\n{formatted_time}\nSkipping...')
         print(f'\n')
         print(f'\n')
 
@@ -389,7 +395,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(Fore.WHITE + f'{doInstallEvilwinrm_out}')
         print(f'\n')
-        print(Fore.YELLOW + f'Succeeded in downloading Evil-WinRM at {path}\nProceeding to change permissions for {path}EyeWitness')
+        print(Fore.YELLOW + f'Succeeded in downloading Evil-WinRM at ./evil-winrm\nProceeding to change permissions for ./EyeWitness')
         print(f'\n')
         print(f'\n')
         
@@ -402,7 +408,9 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
             print(f'\n')
             print(Fore.WHITE + f'{install_gem_winrm_out}')
             print(f'\n')
-            print(Fore.YELLOW + f'Succeeded in installing Evil-WinRM dependency1: {gem_winrm} :D at {formatted_time}')
+            print(Fore.YELLOW + f'Succeeded in downloading Evil-WinRM dependency1: {gem_winrm} :D at {formatted_time}')
+            print(f'\n')
+            print(Fore.YELLOW + f'Please proceed to ./evil-winrm for installation AND(OR) configuration...')
             print(f'\n')
             print(f'\n')
             
@@ -410,7 +418,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
             
             print(f'\n')
             print(Fore.WHITE + f'{install_gem_winrm_err}')
-            print(Fore.RED + f'Failed to install Evil-WinRM dependency1: {gem_winrm} at {formatted_time}')
+            print(Fore.RED + f'Failed to download Evil-WinRM dependency1: {gem_winrm} at {formatted_time}')
             print(f'\n')
             print(Fore.RED + f'You must {gem_winrm} to get it running!!')
             print(f'\n')
@@ -448,7 +456,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(f'\n')
         
-    changeEvilWinRm = f'echo {sudo_password} | sudo chown {user} {path}evil-winrm; echo {sudo_password} | sudo chmod 777 {path}evil-winrm;'
+    changeEvilWinRm = f'echo {sudo_password} | sudo chown {user} ./evil-winrm; echo {sudo_password} | sudo chmod 777 ./evil-winrm;'
     doChangeEvilWinRm = subprocess.Popen(changeEvilWinRm, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangeEvilWinRm_out, doChangeEvilWinRm_err = doChangeEvilWinRm.communicate()
     
@@ -465,7 +473,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(Fore.WHITE + f'{doChangeEvilWinRm_err}')
                     
     # Install Powerline
-    print(Fore.YELLOW + "### Installing Powerline ###")
+    print(Fore.YELLOW + "### Downloading Powerline ###")
     print(Style.RESET_ALL)
     
     installPowerline = f'echo {sudo_password} | sudo git clone https://github.com/powerline/powerline.git'
@@ -478,7 +486,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(Fore.WHITE + f'{doInstallPowerline_out}')
         print(f'\n')
         
-        print(Fore.YELLOW + f'Succeeded in downloading Powerline at {path} at\n{formatted_time}')
+        print(Fore.YELLOW + f'Succeeded in downloading Powerline at ./evil-winrm at\n{formatted_time}')
         print(f'\n')
         print(f'\n')
         
@@ -489,7 +497,7 @@ def installTools(user, sudo_password, formatted_time, newUser, newPassword):
         print(f'\n')
         print(f'\n')
         
-    changePowerLine = f'echo {sudo_password} | sudo chown {user} {path}powerline; echo {sudo_password} | sudo chmod 777 {path}powerline'
+    changePowerLine = f'echo {sudo_password} | sudo chown {user} ./powerline; echo {sudo_password} | sudo chmod 777 ./powerline'
     doChangePowerLine = subprocess.Popen(changePowerLine, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     doChangePowerLine_out, doChangePowerLine_err = doChangePowerLine.communicate()
                     
