@@ -213,44 +213,11 @@ then
                     echo "";
                 fi
 
-                # 2nd time apt update && apt -y upgrade
-                apt-get update && apt-get -y upgrade;
-                if [[ ${?} -eq 0 ]];
-                then
-                    echo "Succeeded in 2nd time apt-get update && apt-get -y upgrade";
-                    echo "Proceeding 2nd time apt autoremove...";
-                    echo "======================================";
-                    echo "======================================";
-                    echo "";
-                    apt autoremove -y;
-
-                    if [[ ${?} -eq 0 ]];
-                    then
-                        echo "Succeeded in 2nd time APT clean up :D";
-                        echo "";
-                        echo "======================================";
-                        echo "======================================";
-                    else
-                        echo "Failed to 2nd time clean up APT trashes";
-                        echo "You may manually APT clean up!";
-                        echo "";
-                        echo "======================================";
-                        echo "======================================";
-                        echo "";
-                    fi
-                else
-                    echo "Failed 2nd time to apt-get update && apt-get -y upgrade";
-                    echo "No worries :) We'll try to breakthrough though :D";
-                    echo "";
-                    echo "======================================";
-                    echo "======================================";
-                    echo "";
-                fi
             else
                 echo "Failed to upgrade to Kali linux :(";
             fi
 
-            # 1st time apt update && apt -y upgrade 
+            # After 1st time apt update && apt -y upgrade 
             if [[ ${?} -eq 0 ]];
             then
                 echo "Congrats! Your Debian has now become a Kali Linux :D!";
