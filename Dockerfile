@@ -3,6 +3,11 @@ FROM kalilinux/kali-rolling
 # Set environment variables for APT
 ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=interactive
+
+# This ENV variable is critical
+# As we need to update our Kali Container Repository
+# using an Asian Kali Public repository 
+# at start of build a Kali Linux Image
 ENV TZ=Asia/Shanghai
 
 # Set the working directory to container's /tools
@@ -28,12 +33,14 @@ LABEL org.opencontainers.image.created="$BUILD_DATE" \
       org.opencontainers.image.authors="Kali Developers <devel@kali.org>"
 
 # Copy archive-key.asc file from this host to container /etc/apt/trusted.gpg.d/
+# To allow our Kali Linux image to update its Kali Linux repository
+# at the time of build our Kali Linux image
 COPY archive-key.asc /etc/apt/trusted.gpg.d/
 
 # Copy host directory files into container /tools
 COPY . /tools/
 
-# Ensure the commands runs as root
+# Ensure the commands run as root
 USER root
 
 # Switch to the correct Kali repository
@@ -69,7 +76,6 @@ RUN apt-get install -y unzip
 RUN apt-get install -y ettercap-graphical
 RUN apt-get install -y make
 RUN apt-get install -y snapd
-RUN apt-get install -y tee
 RUN apt-get install -y cassandra
 RUN apt-get install -y postgresql
 

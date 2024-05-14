@@ -1,30 +1,36 @@
 # Usage
-# 1. Upgrade Kali Repo
-# bash upgrade.sh
-##
-# 2. Install Attack Tools
-# bash install-tools.sh
-##
-# 3. Configure Tools
-# bash configure.sh
-##
-# 4. Install Python3 dependencies
-# bash install-pymodules.sh
-##
-## This repo is a dedication to my cybersecurity mentor: Jimmy gor🙇🏻‍♀️ 
-##
-## Much appreciated your education for Orchestration, advanced Network defenses, Infrastructure Security and Regular Expression🙇🏻‍♀️
-## No Jimmy, no me🙇🏻‍♀️
-##
-# Python is NOT a good tool for performing Bash scripting :D
-# as demonstrated by comparison here between the seamless performance of bug-free Bash scripts and the endless dead-end bugs in main.py using Python to replicate how Bash does its good jobs :D
-##
-## This repo helps you unleash Kali Linux & install tools much faster via Python automation
-## right after you configured a NIC for internet connection :D
-##
-## Usage
-## git clone https://github.com/phoenixyork166/Kali-Rebuild-Auto.git
+# 
+# 1. Using Containers
+## docker build -t mykali -f ./Dockerfile .
 ## 
+## Running your mykali (docker image) with persistent volumes
+## docker run -it --rm --name kali1 -v tools:/tools mykali
+##
+## Once you get into your litte kali1 container
+## cd /tools 
+## this is where you have your cybersecurity-kill-chains toolkit
+## to bring havoc on the world :D
+##
+## To manager Docker persistent volume to be shared across kali containers 
+## docker volume ls
+## 
+## You should see DRIVER local | VOLUME NAME tools
+##
+# 2. Using Kali as a Virtual Machine
+## i. Upgrade Kali Repo
+## bash upgrade.sh
+##
+## ii. Install Attack Tools
+## bash install-tools.sh
+##
+## iii. Configure Tools
+## bash configure.sh
+##
+## iv. Install Python3 dependencies
+## bash install-pymodules.sh
+##
+## This repo helps you unleash Kali Linux & install tools much faster via Python automation, Bash, Docker :D
+##
 ## cd ./Kali-Rebuild-Auto && sudo python3 ./main.py
 ## If your Kali Linux doesn't support this main.py, 
 ## Run the Shell Scripts instead
