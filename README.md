@@ -17,7 +17,7 @@
 ## this is where you have your cybersecurity-kill-chains toolkit
 ## to bring havoc on the world :D
 ##
-## To manager Docker persistent volume to be shared across kali containers 
+## To manage Docker persistent volume to be shared across kali containers 
 ## docker volume ls
 ## 
 ## You should see DRIVER local | VOLUME NAME tools
