@@ -1,4 +1,3 @@
-# 搵工用
 # Cybersecurity Red teaming with Kali Linux
 ![Kali Linux](https://i.ytimg.com/vi/0LajChcEkP0/maxresdefault.jpg)
 ##
