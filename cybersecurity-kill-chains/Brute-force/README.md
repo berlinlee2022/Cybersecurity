@@ -10,9 +10,8 @@
 <h3 style="text-align: left;">To download & untar wordlist.txt for using rockyou.txt</h3>
 <h3 style="text-align: left;">bash Brute-force/untar-wordlist.sh</h3>
 
-## Rock you /usr/share/wordlists/rockyou.txt
-## Downlaod rockyou.txt
-## sudo wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt;
+<h2 style="text-align: left;">To manually download wordlists e.g. rockyou.txt</h2>
+sudo wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt;
 ##
 ## Brute-forcing tools used
 ## hydra

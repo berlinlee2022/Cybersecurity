@@ -51,7 +51,7 @@ iptables -A OUTPUT -j ACCEPT -p tcp --dport 22
 iptables -A FORWARD -j ACCEPT -i vmbr0 -o vmbr1
 iptables -A FORWARD -j ACCEPT -i vmbr1 -o vmbr0
 
-## PREROUTING
+## PREROUTING used by Local NAT Networking for Containers
 # route tcp to firewall, except ssh
 iptables -A PREROUTING -t nat -j DNAT -i vmbr0 -p tcp --match multiport ! --dports 22 --to-destination 10.0.0.2
 # route udp to firewall
