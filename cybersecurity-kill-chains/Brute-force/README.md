@@ -1,12 +1,15 @@
-## Hi Fellow hackers
-## 
-## This folder is used for DoS testing
-## 
-## Please use along with Kali Linux
-## providing you with bunch of namelists & wordlists
-## in /usr/share/wordlists/
-## metasploit namelist /usr/share/wordlists/metasploit/namelist.txt
-##
+<h1 style="text-align: left;">Hi Fellow hackers</h1>
+<br>
+<h2 style="text-align: left;">This folder is used for DDoS testing</h2>
+<br style="text-align: left;">
+<h2 style="text-align: left;">Please use along with Kali Linux</h2>
+<h3 style="text-align: left;">providing you with bunch of namelists & wordlists</h3>
+<h3 style="text-align: left;">in /usr/share/wordlists/</h3>
+<h3 style="text-align: left;">metasploit namelist /usr/share/wordlists/metasploit/namelist.txt</h3>
+<br>
+<h3 style="text-align: left;">To download & untar wordlist.txt for using rockyou.txt</h3>
+<h3 style="text-align: left;">bash Brute-force/untar-wordlist.sh</h3>
+
 ## Rock you /usr/share/wordlists/rockyou.txt
 ## Downlaod rockyou.txt
 ## sudo wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt;
