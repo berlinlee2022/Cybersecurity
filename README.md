@@ -1,6 +1,10 @@
+<img src="./images/application_security.jpg" style="align: center;" />
+
 <h1>Usage</h1>
 <br>
-<h1>1. Using Kali Linux as Docker Containers</h1>
+<h2>In order to communicate well when protecting our Full Stack applications</h2>
+<h2>We need to know about what tools do 3rd party Penetration Testers use</h2>
+<h2>2. Using Kali Linux as Docker Containers</h2>
 <h2>docker build -t mykali -f ./Dockerfile .</h2>
 <br>
 <br>
