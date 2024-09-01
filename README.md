@@ -1,9 +1,3 @@
-# Cybersecurity Red teaming with Kali Linux
-![Kali Linux](https://i.ytimg.com/vi/0LajChcEkP0/maxresdefault.jpg)
-# Penetration Testing / Ethical Hacking
-![Ethical Hacking](https://media.licdn.com/dms/image/D4D12AQHZBU6pxH7LZQ/article-cover_image-shrink_600_2000/0/1686636471875?e=2147483647&v=beta&t=-UIGq76Snqp-gB_bUmLfSnFo6KFYE2r7VUT5iIY4BYg)
-
-## 
 <h1>Usage</h1>
 <br>
 <h1>1. Using Kali Linux as Docker Containers</h1>
