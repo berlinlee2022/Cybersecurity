@@ -1,4 +1,4 @@
-<img src="./images/application_security.jpg" style="align: center;" />
+#<img src="./images/application_security.jpg" style="align: center;" />
 
 <h1>Usage</h1>
 <br>
